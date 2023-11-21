@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <title>Portal de egresados ITTepic</title>
+</head>
+
+<body>
+    <nav class="banner">
+        <div id="tituloBanner">Portal de egresados</div>
+        <list id="menu">
+            <li>
+                <a href="index.html">Regresar</a>
+            </li>
+        </list>
+    </nav>
+
+    <div class="login-container">
+        <div class="background">
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <form id="login-form" action="tu_archivo_de_procesamiento.php" method="post">
+            <h3>Inicio de Sesión</h3>
+
+            <label for="username">No. Control</label>
+            <input type="text" placeholder="Ingresa No. Control" id="username">
+
+            <label for="password">Nip</label>
+            <input type="password" placeholder="Ingresa nip" id="password">
+
+            <button>Ingresar</button>
+            <label>¿Necesitas ayuda? Contactános</label>
+            <div class="social">
+                
+                <div class="go"><i class="fab fa-google"></i> Google</div>
+                <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <div id="direccion">
+
+            <b>Dirección postal</b><br>
+            Instituto Tecnológico de Tepic<br>
+            Avenida Tecnológico #2595<br>
+            Colonia Lagos del Country<br>
+            Tepic, Nayarit. México. C.P. 63175.<br>
+
+        </div>
+
+        <div id="logoFooterITTepic">
+            <img src="img/logoITTepic.png" id="imgLogoITTepic" />
+        </div>
+
+        <div id="logoFooterTecNM">
+            <img src="img/logoTecNM.png" id="imgLogoTecNM" />
+        </div>
+    </footer>
+
+</body>
+
+</html>

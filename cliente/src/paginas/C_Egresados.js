@@ -1,14 +1,13 @@
 import React, { Fragment, useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
+
 
 const RegistroEgresado = () => {
   const [nocontrol, setnocontrol] = useState("");
   const [nombres, setnombres] = useState("");
   const [apellidopaterno, setapellidopaterno] = useState("");
   const [apellidomaterno, setapellidomaterno] = useState("");
-  const [fechanacimiento, setfechanacimiento] = useState("");
+  const [fechanacimiento, setfechanacimiento] = useState(null);
   const [sexo, setsexo] = useState("");
   const [estadocivil, setestadocivil] = useState("");
   const [ciudad, setciudad] = useState("");
@@ -16,20 +15,27 @@ const RegistroEgresado = () => {
   const [estado, setestado] = useState("");
   const [telefono, settelefono] = useState("");
   const [titulado, settitulado] = useState("");
-  const [fechaegreso, setfechaegreso] = useState("");
+  const [fechaegreso, setfechaegreso] = useState(null);
   const [carrera, setcarrera] = useState("");
   const [especialidad, setespecialidad] = useState("");
   const [domicilio, setdomicilio] = useState("");
 
   const registrarEgresado = async (e) => {
     e.preventDefault();
+   // Validar fechas
+   if (!fechanacimiento || !fechaegreso) {
+    console.error("Fechas inválidas");
+    return;
+  }
+
+  
     try {
       const cuerpoDelRegistro = {
         nocontrol,
         nombres,
         apellidopaterno,
         apellidomaterno,
-        fechanacimiento,
+        fechanacimiento: fechanacimiento.toISOString(),
         sexo,
         estadocivil,
         ciudad,
@@ -37,7 +43,7 @@ const RegistroEgresado = () => {
         estado,
         telefono,
         titulado,
-        fechaegreso,
+        fechaegreso: fechaegreso.toISOString(),
         carrera,
         especialidad,
         domicilio,
@@ -53,10 +59,16 @@ const RegistroEgresado = () => {
       );
 
       //
-      if (!respuesta) console.log("Hubo un error de conexion");
-      window.location = "/";
-      alert("Egresado registrado correctamente");
-    } catch (error) {}
+      if (!respuesta.ok) {
+        console.log("Hubo un error en la petición");
+      } else {
+        console.log("Egresado registrado correctamente");
+        // Optionally, you can redirect after a successful registration
+        window.location = "/";
+      }
+     } catch (error) {
+      console.error("Hubo un error en la conexión:", error);
+    }
   };
 
   return (
@@ -124,18 +136,8 @@ const RegistroEgresado = () => {
               </label>
               <input
                 type="date"
-                data-date=""
-                data-date-format="dd-mm-yyyy"
-                onChange={(date) => setfechanacimiento(date)}
-              ></input>
-              {/* <DatePicker
-                            selected={fechanacimiento}
-                            onChange={(date) => setfechanacimiento(date)}
-                            dateFormat="dd-MM-yyyy"
-                            isClearable
-                            showYearDropdown
-                            scrollableYearDropdown
-                        /> */}
+                onChange={(e) => setfechanacimiento(parseISO(e.target.value))}
+              />
             </div>
 
             <div className="col-md-4 mb-3">
@@ -323,18 +325,8 @@ const RegistroEgresado = () => {
               </label>
               <input
                 type="date"
-                data-date=""
-                data-date-format="dd-mm-yyyy"
-                onChange={(date) => setfechaegreso(date)}
-              ></input>
-              {/* <DatePicker
-                                selected={fechaegreso}
-                                onChange={(date) => setfechaegreso(date)}
-                                dateFormat="dd-MM-yyyy"
-                                isClearable
-                                showYearDropdown
-                                scrollableYearDropdown
-                            /> */}
+                onChange={(e) => setfechaegreso(parseISO(e.target.value))}
+              />
             </div>
 
             <div className="col-md-4 mb-3">

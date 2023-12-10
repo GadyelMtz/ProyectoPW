@@ -7,13 +7,14 @@ import DetalleEgresado from './paginas/DetalleEgresado';
 import EditarEgresado from './paginas/EditarEgresado';
 
 const App = () => {
-  return (  
-    <div className='App'>
+  return ( 
+    <Router> 
+    <div id='root'>
     <nav class="banner">
       <div id="tituloBanner">Portal de egresados</div>
       <list id="menu">
         <li>
-          
+        <Link to="/registrar-egresados">Iniciar sesión</Link>
         </li>
       </list>
     </nav>
@@ -51,8 +52,6 @@ const App = () => {
         <img src="img/logoTecNM.png" id="imgLogoTecNM" />
       </div>
     </footer>
-
-    <div>
           <Routes>
             <Route path="/registrar-egresados" element={<RegistroEgresado />} />
             <Route path="/consultar-egresados" element={<RUD_Egresados />} />
@@ -61,8 +60,7 @@ const App = () => {
             <Route path="/eliminar-egresado/:noControl" element={<RUD_Egresados />} />
           </Routes>
         </div>
-    </div>
-    
+    </Router>
   );
 };
 

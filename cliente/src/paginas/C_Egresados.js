@@ -166,26 +166,6 @@ const RegistroEgresado = () => {
                   <label class="form-check-label">Hombre</label>
                 </div>
               </div>
-              {/* <div>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="sexo"
-                                        value="Mujer"
-                                        onChange={(e) => setsexo(e.target.value)}
-                                    />
-                                    Mujer
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="sexo"
-                                        value="Hombre"
-                                        onChange={(e) => setsexo(e.target.value)}
-                                    />
-                                    Hombre
-                                </label>
-                            </div> */}
             </div>
 
             <div className="col-md-4 mb-3">
@@ -331,22 +311,6 @@ const RegistroEgresado = () => {
                   <label class="form-check-label">No</label>
                 </div>
               </div>
-              {/* <div>
-                                <input
-                                    type="radio"
-                                    value="Si"
-                                    onChange={(e) => settitulado(e.target.value)}
-                                />
-                                Sí
-                                <label>
-                                    <input
-                                        type="radio"
-                                        value="No"
-                                        onChange={(e) => settitulado(e.target.value)}
-                                    />
-                                    No
-                                </label>
-                            </div> */}
             </div>
           </div>
 

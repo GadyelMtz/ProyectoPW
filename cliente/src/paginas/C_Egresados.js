@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import { format } from 'date-fns';
 
 const RegistroEgresado = () => {
   const [nocontrol, setnocontrol] = useState("");
@@ -219,6 +219,18 @@ const RegistroEgresado = () => {
         </div>
 
         <div className="mb-3">
+          <label htmlFor="domicilio" className="form-label">
+            Domicilio
+          </label>
+          <input
+            id="domicilio"
+            type="Text"
+            className="form-control"
+            value={domicilio}
+            onChange={(e) => setdomicilio(e.target.value)}
+          />
+
+        <div className="mb-3">
           <label htmlFor="telefono" className="form-label">
             Telefono
           </label>
@@ -292,21 +304,10 @@ const RegistroEgresado = () => {
           />
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="domicilio" className="form-label">
-            Domicilio
-          </label>
-          <input
-            id="domicilio"
-            type="Text"
-            className="form-control"
-            value={domicilio}
-            onChange={(e) => setdomicilio(e.target.value)}
-          />
+        
         </div>
         <button className="btn btn-success">Insertar</button>
       </form>
-      
     </Fragment>
   );
 };

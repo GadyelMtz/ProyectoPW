@@ -172,7 +172,7 @@ const RegistroEgresado = () => {
               Otro
               <input
                 type="radio"
-                value="otro"
+                value="Otro"
                 onChange={(e) => setestadocivil(e.target.value)}
               />
             </label>
@@ -262,7 +262,6 @@ const RegistroEgresado = () => {
           </label>
         </div>
       </div>
-
 
         <div className="mb-3">
           <label htmlFor="fechaegreso" className="form-label">

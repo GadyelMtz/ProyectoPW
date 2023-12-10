@@ -14,7 +14,7 @@ const App = () => {
       <div id="tituloBanner">Portal de egresados</div>
       <list id="menu">
         <li>
-          <a href="login">Iniciar sesión</a>
+          
         </li>
       </list>
     </nav>
@@ -52,11 +52,8 @@ const App = () => {
         <img src="img/logoTecNM.png" id="imgLogoTecNM" />
       </div>
     </footer>
-    </div>
-  );
 
-
-  <Router>
+    <Router>
       <div>
         <Routes>
           <Route path="/registrar-egresados" element={<RegistroEgresado />} />
@@ -67,6 +64,9 @@ const App = () => {
         </Routes>
       </div>
     </Router>
+    </div>
+    
+  );
 };
 
 export default App;

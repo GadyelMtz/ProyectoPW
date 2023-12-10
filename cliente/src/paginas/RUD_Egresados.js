@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import '../css/RUD_egresado.css'
 
 const RUD_Egresados = () => {
   const [egresados, setEgresados] = useState([]);

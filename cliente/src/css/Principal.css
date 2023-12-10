@@ -1,3 +1,4 @@
+.contenedorDePrincipal {
 html {
   font-family: "Inter", sans-serif;
 }
@@ -120,4 +121,6 @@ footer b {
 #direccion {
   flex: 1;
   text-align: left;
+}
+
 }

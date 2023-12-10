@@ -5,6 +5,7 @@ import { format } from "date-fns";
 const EditarEgresado = () => {
   const { noControl } = useParams();
   const [egresado, setEgresado] = useState(null);
+  const [actualizacionExitosa, setActualizacionExitosa] = useState(false);
   const [nuevosDatos, setNuevosDatos] = useState({
     nombres: "",
     apellidopaterno: "",
@@ -93,6 +94,9 @@ const EditarEgresado = () => {
     } catch (error) {
       console.log(error.message);
     }
+
+    // Mostrar mensaje de éxito
+    alert("Los datos se han actualizado correctamente.");
   };
 
   if (!egresado) {
@@ -145,10 +149,10 @@ const EditarEgresado = () => {
           />
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="fechanacimiento" className="form-label">
-            Fecha de nacimiento
-          </label>
+          <div className="mb-3">
+            <label htmlFor="fechanacimiento" className="form-label">
+              Fecha de nacimiento
+            </label>
           <input
             id="fechanacimiento"
             type="date"
@@ -223,7 +227,7 @@ const EditarEgresado = () => {
                 type="radio"
                 name="estadocivil"
                 value="Otro"
-                checked={nuevosDatos.sexo === "Otro"}
+                checked={nuevosDatos.estadocivil === "Otro"}
                 onChange={handleInputChange}
               />
               Otro
@@ -298,7 +302,7 @@ const EditarEgresado = () => {
                 type="radio"
                 name="titulado"
                 value="Si"
-                checked={nuevosDatos.sexo === "Si"}
+                checked={nuevosDatos.titulado === "Si"}
                 onChange={handleInputChange}
               />
               Si
@@ -308,7 +312,7 @@ const EditarEgresado = () => {
                 type="radio"
                 name="titulado"
                 value="No"
-                checked={nuevosDatos.sexo === "No"}
+                checked={nuevosDatos.titulado === "No"}
                 onChange={handleInputChange}
               />
               No
@@ -353,7 +357,7 @@ const EditarEgresado = () => {
 
         <div className="mb-3">
           <label htmlFor="especialidad" className="form-label">
-            Carrera
+            Especialidad
           </label>
           <input
             id="especialidad"
@@ -383,6 +387,8 @@ const EditarEgresado = () => {
           Editar
         </button>
       </form>
+
+     
     </Fragment>
   );
 };

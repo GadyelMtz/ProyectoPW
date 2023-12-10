@@ -52,6 +52,7 @@ const RegistroEgresado = () => {
       //
       if (!respuesta) console.log("Hubo un error de conexion");
       window.location = "/";
+      alert("Egresado registrado correctamente");
     } catch (error) {}
   };
 
@@ -124,6 +125,8 @@ const RegistroEgresado = () => {
             scrollableYearDropdown
           />
         </div>
+
+        
 
         <div className="mb-3">
           <label className="form-label">Sexo</label>

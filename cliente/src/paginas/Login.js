@@ -10,7 +10,7 @@ const Login = () => {
         <div id="tituloBanner">Portal de egresados</div>
         <list id="menu">
           <li>
-          <Link to="/ ">Regresar</Link>
+          <Link to="/">Regresar</Link>
           </li>
         </list>
       </nav>
@@ -33,7 +33,7 @@ const Login = () => {
           <label htmlFor="password">Nip</label>
           <input type="password" placeholder="Ingresa nip" id="password" />
 
-          <Link to="/registrar-egresados">Ingresar</Link>
+          <Link to="/menu">Ingresar</Link>
 
           <div className="social">
             <h4>¿Necesitas ayuda? Contactános</h4>

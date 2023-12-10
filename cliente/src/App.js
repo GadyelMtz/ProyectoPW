@@ -6,6 +6,7 @@ import DetalleEgresado from "./paginas/DetalleEgresado";
 import EditarEgresado from "./paginas/EditarEgresado";
 import Login from "./paginas/Login";
 import Principal from "./paginas/Principal";
+import Menu from "./paginas/Menu";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <Route path="/editar-egresado/:noControl" element={<EditarEgresado />} />
       <Route path="/eliminar-egresado/:noControl" element={<RUD_Egresados />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/menu" element={<Menu/>}/>
     </Routes>
   </Router>
   );

@@ -11,7 +11,7 @@ const Principal = () => {
       <div id="tituloBanner">Portal de egresados</div>
       <list id="menu">
         <li>
-        <Link to="/Login">Iniciar sesión</Link>
+        <Link to="/login">Iniciar sesión</Link>
         </li>
       </list>
     </nav>

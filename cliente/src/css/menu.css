@@ -1,17 +1,19 @@
-
-nav, .offcanvas{
+.contenedorDeMenu {
+  nav,
+  .offcanvas {
     background-color: #272c33;
-}
-.navbar-toggler{
+  }
+  .navbar-toggler {
     border: none;
-}
-.navbar-toggler:focus{
+  }
+  .navbar-toggler:focus {
     outline: none;
-    box-shadow:  none;
-}
+    box-shadow: none;
+  }
 
-@media(max-width:768px){
-    .navbar-nav > li:hover{
-        background-color: #1b396a;
+  @media (max-width: 768px) {
+    .navbar-nav > li:hover {
+      background-color: #1b396a;
     }
+  }
 }

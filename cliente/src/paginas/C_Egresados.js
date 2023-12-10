@@ -225,32 +225,6 @@ const RegistroEgresado = () => {
                   <label class="form-check-label">Otro</label>
                 </div>
               </div>
-              {/* <div>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        value="Soltero"
-                                        onChange={(e) => setestadocivil(e.target.value)}
-                                    />
-                                    Soltero
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        value="Casado"
-                                        onChange={(e) => setestadocivil(e.target.value)}
-                                    />
-                                    Casado
-                                </label>
-                                <label>
-                                    Otro
-                                    <input
-                                    type="radio"
-                                        value="otro"
-                                        onChange={(e) => setestadocivil(e.target.value)}
-                                    />
-                                </label>
-                            </div> */}
             </div>
           </div>
           <div className="row">

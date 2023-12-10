@@ -7,7 +7,6 @@ import DetalleEgresado from './paginas/DetalleEgresado';
 import EditarEgresado from './paginas/EditarEgresado';
 
 const App = () => {
-  
   return (  
     <div className='App'>
     <nav class="banner">
@@ -53,17 +52,15 @@ const App = () => {
       </div>
     </footer>
 
-    <Router>
-      <div>
-        <Routes>
-          <Route path="/registrar-egresados" element={<RegistroEgresado />} />
-          <Route path="/consultar-egresados" element={<RUD_Egresados />} />
-          <Route path="/consultar-egresados/:noControl" element={<DetalleEgresado/>} />
-          <Route path="/editar-egresado/:noControl" element={<EditarEgresado/>} />
-          <Route path="/eliminar-egresado/:noControl" element={<RUD_Egresados/>} />
-        </Routes>
-      </div>
-    </Router>
+    <div>
+          <Routes>
+            <Route path="/registrar-egresados" element={<RegistroEgresado />} />
+            <Route path="/consultar-egresados" element={<RUD_Egresados />} />
+            <Route path="/consultar-egresados/:noControl" element={<DetalleEgresado />} />
+            <Route path="/editar-egresado/:noControl" element={<EditarEgresado />} />
+            <Route path="/eliminar-egresado/:noControl" element={<RUD_Egresados />} />
+          </Routes>
+        </div>
     </div>
     
   );

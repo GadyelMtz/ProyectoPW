@@ -24,7 +24,9 @@ const App = () => {
           <Route path="/registrar-egresados" element={<RegistroEgresado />} />
           <Route path="/consultar-egresados" element={<RUD_Egresados />} />
           <Route path="/consultar-egresados/:noControl" element={<DetalleEgresado/>} />
-          <Route path="/editar-egresados/:noControl" element={<EditarEgresado/>} />
+          <Route path="/editar-egresado/:noControl" element={<EditarEgresado/>} />
+          <Route path="/eliminar-egresado/:noControl" element={<RUD_Egresados/>} />
+
         </Routes>
       </div>
     </Router>

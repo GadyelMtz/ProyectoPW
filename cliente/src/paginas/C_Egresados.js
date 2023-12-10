@@ -49,11 +49,12 @@ const RegistroEgresado = () => {
                 body: JSON.stringify(cuerpoDelRegistro),
             });
 
-            //
-            if (!respuesta) console.log("Hubo un error de conexion");
-            window.location = "/";
-        } catch (error) { }
-    };
+      //
+      if (!respuesta) console.log("Hubo un error de conexion");
+      window.location = "/";
+      alert("Egresado registrado correctamente");
+    } catch (error) {}
+  };
 
     return (
         <Fragment>

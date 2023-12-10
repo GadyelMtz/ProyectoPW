@@ -6,13 +6,29 @@ const RUD_Egresados = () => {
 
   const getEgresados = async () => {
     try {
-      const respuesta = await fetch(
-        "http://localhost:5000/consultar-egresados"
-      );
+      const respuesta = await fetch("http://localhost:5000/consultar-egresados");
       const jsonData = await respuesta.json();
       setEgresados(jsonData);
     } catch (error) {
       console.log(error.message);
+    }
+  };
+
+  const eliminarEgresado = async (nocontrol) => {
+    try {
+      const confirmacion = window.confirm("¿Estás seguro de eliminar este egresado?");
+      if (!confirmacion) {
+        return; // Cancelar la eliminación si el usuario elige cancelar
+      }
+
+      await fetch(`http://localhost:5000/eliminar-egresado/${nocontrol}`, {
+        method: "DELETE",
+      });
+
+      // Actualizar la lista de egresados después de la eliminación
+      getEgresados();
+    } catch (error) {
+      console.error(error.message);
     }
   };
 
@@ -22,7 +38,6 @@ const RUD_Egresados = () => {
 
   return (
     <Fragment>
-      {" "}
       <table className="table mt-5 text-center">
         <thead>
           <tr>
@@ -49,19 +64,23 @@ const RUD_Egresados = () => {
                 </Link>
               </td>
               <td>
-              <Link
+                <Link
                   to={{
-                    pathname: `/editar-egresados/${egresado.nocontrol}`,
+                    pathname: `/editar-egresado/${egresado.nocontrol}`,
                     state: { egresado },
                   }}
                 >
-                <button type="button" className="btn btn-warning">
-                  Editar
-                </button>
+                  <button type="button" className="btn btn-warning">
+                    Editar
+                  </button>
                 </Link>
               </td>
               <td>
-                <button type="button" className="btn btn-danger">
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => eliminarEgresado(egresado.nocontrol)}
+                >
                   Eliminar
                 </button>
               </td>

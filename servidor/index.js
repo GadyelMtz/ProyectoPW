@@ -64,8 +64,8 @@ app.post('/registrar-egresados', async (req, res) => {
 
 app.get("/consultar-egresados", async (req, res) => {
   try {
-    const getpais = await pool.query("select * from egresado");
-    res.json(getpais.rows);
+    const getegresado = await pool.query("select * from egresado");
+    res.json(getegresado.rows);
   } catch (error) {
     console.log(error.message);
   }
@@ -152,6 +152,46 @@ app.delete("/eliminar-egresado/:id", async(req, res)=>{
   }
 
 });
+
+
+// Iniciar sesion como administrador
+app.get("/login/-:nip", async (req, res) => {
+  try {
+    const { nip } = req.params;
+    const administrador = await pool.query("SELECT idusuario FROM usuario WHERE nip = $1 AND privilegio = 'Administrador'", [nip]);
+
+    if (administrador.rows.length === 0) {
+      console.log("No se encontró ningún administrador con el nip especificado.");
+      res.status(404).json({ error: "Administrador no encontrado" });
+    } else {
+      // Incluye el campo 'privilegio' en la respuesta JSON
+      res.json({ authenticated: true, privilegio: "Administrador" });
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Error en el servidor");
+  }
+});
+
+app.get("/login/:nocontrol-:nip", async (req, res) => {
+  try {
+    const { nocontrol, nip} = req.params;
+    const egresado = await pool.query("SELECT idusuario FROM usuario WHERE nocontrol_egresado = $1 AND nip = $2", [nocontrol, nip]);
+
+    if (egresado.rows.length === 0) {
+      console.log("No se encontró ningún usuario con las credenciales especificadas.");
+      res.status(404).json({ error: "Usuario no encontrado" });
+    } else {
+      // Incluye el campo 'privilegio' en la respuesta JSON
+      res.json({ authenticated: true, privilegio: "Egresado" });
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Error en el servidor");
+  }
+});
+
+
 
 app.listen(5000, () => {
   console.log("Server iniciado en el puerto 5000");

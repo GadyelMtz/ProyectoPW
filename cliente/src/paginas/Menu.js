@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
 import '../css/menu.css'
+import { Link } from "react-router-dom";
+
 const Menu = () => {
   return (
     <Fragment>
@@ -41,9 +43,9 @@ const Menu = () => {
                     </a>
                   </li>
                   <li class="nav-item p-3 py-md-1">
-                    <a href="" class="nav-link">
-                      Mi curriculum
-                    </a>
+                    <Link to="/consultar-egresados" class="nav-link">
+                      Ver egresados
+                    </Link>
                   </li>
                   <li class="nav-item p-3 py-md-1">
                     <a href="" class="nav-link">

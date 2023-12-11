@@ -74,16 +74,26 @@ app.get("/consultar-egresados", async (req, res) => {
 app.get("/consultar-egresados/:nocontrol", async (req, res) => {
   try {
     const { nocontrol } = req.params; //URI
+    console.log("Número de control recibido:", nocontrol);
+
     const egresado = await pool.query("select * from egresado where nocontrol = $1", [
       nocontrol,
     ]);
-    res.json(egresado.rows[0]);
+
+    if (egresado.rows.length === 0) {
+      console.log("No se encontró ningún egresado con el número de control especificado.");
+      res.status(404).json({ error: "Egresado no encontrado" });
+    } else {
+      console.log("Datos del egresado encontrado:", egresado.rows[0]);
+      res.json(egresado.rows[0]);
+    }
   } catch (error) {
-    console.log(error.message);
+    console.error("Error al consultar datos del egresado:", error.message);
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 });
 
-app.put("/editar-egresados/:nocontrol", async (req, res) => {
+app.put("/editar-egresado/:nocontrol", async (req, res) => {
   try {
     const { nocontrol } = req.params;
     const {
@@ -122,14 +132,25 @@ app.put("/editar-egresados/:nocontrol", async (req, res) => {
         carrera,
         especialidad,
         domicilio,
-        nocontrol,
+        nocontrol, // Ajuste aquí: es el $16
       ]
-    );
+    );    
     res.json("Se ha realizado la actualización");
   } catch (error) {
     console.log(error.message);
     res.status(500).json("Error en el servidor");
   }
+});
+
+app.delete("/eliminar-egresado/:id", async(req, res)=>{
+  try{
+      const {id} = req.params;
+      const deleteEgresado = await pool.query("delete from egresado where nocontrol =$1", [id]);
+      res.json("El egresado ha sido eliminado");
+  } catch (error){
+      console.log(error.message);
+  }
+
 });
 
 app.listen(5000, () => {

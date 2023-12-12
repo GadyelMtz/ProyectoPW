@@ -150,7 +150,6 @@ app.delete("/eliminar-egresado/:id", async(req, res)=>{
   } catch (error){
       console.log(error.message);
   }
-
 });
 
 

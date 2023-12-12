@@ -49,8 +49,8 @@ const DetalleEgresado = () => {
         <p id="campo5">{egresado.sexo}</p>
         <label htmlFor="campo6">Estado civil:</label>
         <p id="campo6">{egresado.estadocivil}</p>
-        <label htmlFor="campo7">Ciudad:</label>
-        <p id="campo7">{egresado.ciudad}</p>
+        <label htmlFor="campo7">Codigo postal:</label>
+        <p id="campo7">{egresado.cp}</p>
         <label htmlFor="campo8">Municipio:</label>
         <p id="campo8">{egresado.municipio}</p>
         <label htmlFor="campo9">Estado:</label>

@@ -1,12 +1,11 @@
 .contenedorDePrincipal {
-  background-color: #6E92C7;
+  background-color: #6e92c7;
   html {
     font-family: "Inter", sans-serif;
   }
 
   body {
     margin: 0;
-    
   }
 
   .banner {

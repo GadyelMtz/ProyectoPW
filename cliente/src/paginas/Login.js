@@ -127,11 +127,7 @@ const Login = () => {
           </div>
 
           <div id="logoFooterITTepic">
-            <img
-              src={logoITTepic}
-              id="imgLogoITTepic"
-              alt="Logo ITTepic"
-            />
+            <img src={logoITTepic} id="imgLogoITTepic" alt="Logo ITTepic" />
           </div>
 
           <div id="logoFooterTecNM">

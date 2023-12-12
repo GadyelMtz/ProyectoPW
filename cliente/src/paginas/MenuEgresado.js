@@ -1,10 +1,9 @@
 import React, { Fragment } from "react";
-import '../css/menuEgresado.css';
-import Opcion1 from "../img/Opcion1.png"; 
-import Opcion2 from "../img/Opcion2.png"; 
-import Opcion3 from "../img/Opcion3.png"; 
-import Opcion4 from "../img/Opcion4.png"; 
-
+import "../css/menuEgresado.css";
+import Opcion1 from "../img/Opcion1.png";
+import Opcion2 from "../img/Opcion2.png";
+import Opcion3 from "../img/Opcion3.png";
+import Opcion4 from "../img/Opcion4.png";
 
 import { Link } from "react-router-dom";
 
@@ -64,9 +63,9 @@ const MenuEgresado = () => {
                     </Link>
                   </li>
                 </ul>
-      </div>
+              </div>
 
-      <div className="contenedorDeInfo">
+              <div className="contenedorDeInfo">
                 <h1>Formas de Titulación</h1>
 
                 <div class="background-image">
@@ -108,7 +107,7 @@ const MenuEgresado = () => {
                     </div>
 
                     <div class="titulacion-item">
-                      <img src={Opcion3}alt="Opción 3" />
+                      <img src={Opcion3} alt="Opción 3" />
                       <div class="titulacion-info">
                         <h2>Titulación por Proyecto de investigación</h2>
                         <p>

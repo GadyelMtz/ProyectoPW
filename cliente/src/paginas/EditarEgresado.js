@@ -13,7 +13,7 @@ const EditarEgresado = () => {
     fechanacimiento: "",
     sexo: "",
     estadocivil: "",
-    ciudad: "",
+    cp: "",
     municipio: "",
     estado: "",
     telefono: "",
@@ -78,17 +78,20 @@ const EditarEgresado = () => {
         fechaegreso: fechaEgresoFormateada,
       });
 
-      await fetch(`http://localhost:5000/login/menu-administrador/editar-egresado/${noControl}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...nuevosDatos,
-          fechanacimiento: fechaNacimientoFormateada,
-          fechaegreso: fechaEgresoFormateada,
-        }),
-      });
+      await fetch(
+        `http://localhost:5000/login/menu-administrador/editar-egresado/${noControl}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...nuevosDatos,
+            fechanacimiento: fechaNacimientoFormateada,
+            fechaegreso: fechaEgresoFormateada,
+          }),
+        }
+      );
 
       setEgresado(nuevosDatos);
     } catch (error) {
@@ -149,10 +152,10 @@ const EditarEgresado = () => {
           />
         </div>
 
-          <div className="mb-3">
-            <label htmlFor="fechanacimiento" className="form-label">
-              Fecha de nacimiento
-            </label>
+        <div className="mb-3">
+          <label htmlFor="fechanacimiento" className="form-label">
+            Fecha de nacimiento
+          </label>
           <input
             id="fechanacimiento"
             type="date"
@@ -235,17 +238,16 @@ const EditarEgresado = () => {
           </div>
         </div>
 
-
         <div className="mb-3">
-          <label htmlFor="ciudad" className="form-label">
-            Ciudad
+          <label htmlFor="cp" className="form-label">
+            Codigo postal
           </label>
           <input
-            id="ciudad"
+            id="cp"
             type="text"
             className="form-control"
-            name="ciudad"
-            value={nuevosDatos.ciudad}
+            name="cp"
+            value={nuevosDatos.cp}
             onChange={handleInputChange}
           />
         </div>
@@ -331,15 +333,13 @@ const EditarEgresado = () => {
             name="fechaegreso"
             value={
               nuevosDatos.fechaegreso
-                ? new Date(nuevosDatos.fechaegreso)
-                    .toISOString()
-                    .split("T")[0]
+                ? new Date(nuevosDatos.fechaegreso).toISOString().split("T")[0]
                 : ""
             }
             onChange={handleInputChange}
           />
         </div>
-      
+
         <div className="mb-3">
           <label htmlFor="carrera" className="form-label">
             Carrera
@@ -353,7 +353,6 @@ const EditarEgresado = () => {
             onChange={handleInputChange}
           />
         </div>
-
 
         <div className="mb-3">
           <label htmlFor="especialidad" className="form-label">
@@ -387,8 +386,6 @@ const EditarEgresado = () => {
           Editar
         </button>
       </form>
-
-     
     </Fragment>
   );
 };

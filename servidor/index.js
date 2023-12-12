@@ -10,8 +10,13 @@ app.use(express.json());
 
 
 
+
 app.post('/login/menu-administrador/registrar-egresados', async (req, res) => {
+  const client = await pool.connect(); // Obtén una instancia del cliente de la pool
+
   try {
+    await client.query("BEGIN"); // Inicia la transacción
+
     const {
       nocontrol,
       nombres,
@@ -20,7 +25,7 @@ app.post('/login/menu-administrador/registrar-egresados', async (req, res) => {
       fechanacimiento,
       sexo,
       estadocivil,
-      ciudad,
+      cp,
       municipio,
       estado,
       telefono,
@@ -35,8 +40,9 @@ app.post('/login/menu-administrador/registrar-egresados', async (req, res) => {
     const fechaFormateadaEgreso = format(new Date(fechaegreso), 'yyyy-MM-dd');
     const fechaFormateadaNacimiento = format(new Date(fechanacimiento), 'yyyy-MM-dd');
 
-    const nuevoEgresado = await pool.query(
-      'INSERT INTO egresado (nocontrol, nombres, apellidoPaterno, apellidomaterno, fechanacimiento, sexo, estadocivil, ciudad, municipio, estado, telefono, titulado, fechaegreso, carrera, especialidad, domicilio) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)',
+    // Inserta en la tabla egresado
+    const nuevoEgresado = await client.query(
+      'INSERT INTO egresado (nocontrol, nombres, apellidoPaterno, apellidomaterno, fechanacimiento, sexo, estadocivil, cp, municipio, estado, telefono, titulado, fechaegreso, carrera, especialidad, domicilio) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING nocontrol',
       [
         nocontrol,
         nombres,
@@ -45,22 +51,38 @@ app.post('/login/menu-administrador/registrar-egresados', async (req, res) => {
         fechaFormateadaNacimiento,
         sexo,
         estadocivil,
-        ciudad,
+        cp,
         municipio,
         estado,
         telefono,
         titulado,
-        fechaFormateadaEgreso, // Usa la fecha formateada aquí
+        fechaFormateadaEgreso,
         carrera,
         especialidad,
         domicilio,
       ]
     );
-    res.json(nuevoEgresado[0]);
+
+    // Generar un NIP aleatorio
+    const nipAleatorio = Math.floor(100000 + Math.random() * 900000);
+
+    // Insertar en la tabla usuario
+    await client.query(
+      'INSERT INTO usuario (nip, privilegio, nocontrol_egresado) VALUES ($1, $2, $3)',
+      [nipAleatorio, 'Egresado', nuevoEgresado.rows[0].nocontrol]
+    );
+
+    await client.query("COMMIT"); // Confirma la transacción
+    res.json({ mensaje: "Egresado registrado correctamente", nip: nipAleatorio });
   } catch (error) {
+    await client.query("ROLLBACK"); // Deshace la transacción en caso de error
     console.log(error.message);
+    res.status(500).json("Error en el servidor");
+  } finally {
+    client.release(); // Libera el cliente de la pool
   }
 });
+
 
 app.get("/login/menu-administrador/consultar-egresados", async (req, res) => {
   try {
@@ -142,15 +164,41 @@ app.put("/login/menu-administrador/editar-egresado/:nocontrol", async (req, res)
   }
 });
 
-app.delete("/login/menu-administrador/eliminar-egresado/:id", async(req, res)=>{
-  try{
-      const {id} = req.params;
-      const deleteEgresado = await pool.query("delete from egresado where nocontrol =$1", [id]);
-      res.json("El egresado ha sido eliminado");
-  } catch (error){
-      console.log(error.message);
+app.delete("/login/menu-administrador/eliminar-egresado/:id", async (req, res) => {
+  const client = await pool.connect(); // Obtén una instancia del cliente de la pool
+
+  try {
+    await client.query("BEGIN"); // Inicia la transacción
+
+    const { id } = req.params;
+
+    // Busca el idusuario relacionado con el nocontrol del egresado que deseas eliminar
+    const usuarioResult = await client.query("SELECT idusuario FROM usuario WHERE nocontrol_egresado = $1", [id]);
+    const tu_idusuario = usuarioResult.rows[0] ? usuarioResult.rows[0].idusuario : null;
+
+    // Elimina la encuesta solo si existe
+    if (tu_idusuario) {
+      await client.query("DELETE FROM encuesta WHERE nocontrol = $1", [id]);
+    }
+
+    // Elimina el registro de usuario
+    await client.query("DELETE FROM usuario WHERE idusuario = $1", [tu_idusuario]);
+
+    // Elimina el registro de egresado
+    await client.query("DELETE FROM egresado WHERE nocontrol = $1", [id]);
+
+    await client.query("COMMIT"); // Confirma la transacción
+    res.json("El egresado ha sido eliminado");
+  } catch (error) {
+    await client.query("ROLLBACK"); // Deshace la transacción en caso de error
+    console.log(error.message);
+    res.status(500).json("Error en el servidor");
+  } finally {
+    client.release(); // Libera el cliente de la pool
   }
 });
+
+
 
 
 // Iniciar sesion como administrador

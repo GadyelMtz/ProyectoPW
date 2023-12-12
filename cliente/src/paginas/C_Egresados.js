@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { format, parseISO } from "date-fns";
 
-
 const RegistroEgresado = () => {
   const [nocontrol, setnocontrol] = useState("");
   const [nombres, setnombres] = useState("");
@@ -10,7 +9,14 @@ const RegistroEgresado = () => {
   const [fechanacimiento, setfechanacimiento] = useState(null);
   const [sexo, setsexo] = useState("");
   const [estadocivil, setestadocivil] = useState("");
-  const [ciudad, setciudad] = useState("");
+
+  const [cp, setcp] = useState("");
+  const [isValidCP, setValidCP] = useState(true);
+  const [locationData, setLocationData] = useState({
+    estado: "",
+    municipio: "",
+  });
+
   const [municipio, setmunicipio] = useState("");
   const [estado, setestado] = useState("");
   const [telefono, settelefono] = useState("");
@@ -20,15 +26,43 @@ const RegistroEgresado = () => {
   const [especialidad, setespecialidad] = useState("");
   const [domicilio, setdomicilio] = useState("");
 
+  const handleCPChange = (e) => {
+    setcp(e.target.value);
+    // Validar si el valor es un número entero
+    const isValidInteger = /^\d+$/.test(e.target.value);
+    setValidCP(isValidInteger);
+  };
+
+  const handleCPBlur = async () => {
+    if (isValidCP) {
+      try {
+        const response = await fetch(
+          `https://api.copomex.com/query/info_cp/${cp}?type=simplified&token=pruebas`
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          setLocationData({
+            estado: data.response.estado,
+            municipio: data.response.municipio,
+          });
+        } else {
+          console.error("Error al obtener datos de la API");
+        }
+      } catch (error) {
+        console.error("Error en la solicitud a la API", error);
+      }
+    }
+  };
+
   const registrarEgresado = async (e) => {
     e.preventDefault();
-   // Validar fechas
-   if (!fechanacimiento || !fechaegreso) {
-    console.error("Fechas inválidas");
-    return;
-  }
+    // Validar fechas
+    if (!fechanacimiento || !fechaegreso) {
+      console.error("Fechas inválidas");
+      return;
+    }
 
-  
     try {
       const cuerpoDelRegistro = {
         nocontrol,
@@ -38,9 +72,9 @@ const RegistroEgresado = () => {
         fechanacimiento: fechanacimiento.toISOString(),
         sexo,
         estadocivil,
-        ciudad,
-        municipio,
-        estado,
+        cp,
+        municipio: locationData.municipio, // Agregar el valor de municipio
+        estado: locationData.estado, // Agregar el valor de estado
         telefono,
         titulado,
         fechaegreso: fechaegreso.toISOString(),
@@ -58,15 +92,14 @@ const RegistroEgresado = () => {
         }
       );
 
-      //
       if (!respuesta.ok) {
         console.log("Hubo un error en la petición");
       } else {
         console.log("Egresado registrado correctamente");
-        // Optionally, you can redirect after a successful registration
-        window.location = "/";
+        window.location = "/login/menu-administrador/registrar-egresados";
+        alert("Egresado registrado");
       }
-     } catch (error) {
+    } catch (error) {
       console.error("Hubo un error en la conexión:", error);
     }
   };
@@ -135,6 +168,7 @@ const RegistroEgresado = () => {
                 Fecha de Nacimiento
               </label>
               <input
+                className="form-control"
                 type="date"
                 onChange={(e) => setfechanacimiento(parseISO(e.target.value))}
               />
@@ -220,16 +254,18 @@ const RegistroEgresado = () => {
                 onChange={(e) => setdomicilio(e.target.value)}
               />
             </div>
-            <div className="col-md-3 mb-3">
-              <label htmlFor="ciudad" className="form-label">
-                Ciudad
+            <div className={`col-md-3 mb-3 ${isValidCP ? "" : "has-error"}`}>
+              <label htmlFor="cp" className="form-label">
+                Codigo postal
               </label>
               <input
-                id="ciudad"
-                type="Text"
-                className="form-control"
-                value={ciudad}
-                onChange={(e) => setciudad(e.target.value)}
+                id="cp"
+                type="text"
+                className={`form-control ${isValidCP ? "" : "is-invalid"}`}
+                value={cp}
+                onChange={handleCPChange}
+                onFocus={() => console.log("Input de Código Postal en foco")}
+                onBlur={handleCPBlur}
               />
             </div>
 
@@ -239,10 +275,10 @@ const RegistroEgresado = () => {
               </label>
               <input
                 id="municipio"
-                type="Text"
+                type="text"
                 className="form-control"
-                value={municipio}
-                onChange={(e) => setmunicipio(e.target.value)}
+                value={locationData.municipio}
+                readOnly
               />
             </div>
 
@@ -252,10 +288,10 @@ const RegistroEgresado = () => {
               </label>
               <input
                 id="estado"
-                type="Text"
+                type="text"
                 className="form-control"
-                value={estado}
-                onChange={(e) => setestado(e.target.value)}
+                value={locationData.estado}
+                readOnly
               />
             </div>
           </div>
@@ -278,6 +314,7 @@ const RegistroEgresado = () => {
                 Fecha de egreso
               </label>
               <input
+                className="form-control"
                 type="date"
                 onChange={(e) => setfechaegreso(parseISO(e.target.value))}
               />
@@ -319,13 +356,25 @@ const RegistroEgresado = () => {
               <label htmlFor="carrera" className="form-label">
                 Carrera
               </label>
-              <input
+              <select
                 id="carrera"
-                type="Text"
-                className="form-control"
+                name="carrera"
                 value={carrera}
                 onChange={(e) => setcarrera(e.target.value)}
-              />
+                className="form-control"
+              >
+                <option value="">- Seleccione -</option>
+                <option value="IngenieriaIndustrial">
+                  Ingeniería Industrial
+                </option>
+                <option value="LicenciaturaAdminEmpresas">
+                  Licenciatura en Administración de Empresas
+                </option>
+                <option value="IngenieriaSistemasComputacionales">
+                  Ingeniería en Sistemas Computacionales
+                </option>
+                {/* ... Agrega más opciones según sea necesario */}
+              </select>
             </div>
 
             <div className="col-md-6 mb-3">
@@ -342,7 +391,7 @@ const RegistroEgresado = () => {
             </div>
           </div>
           <div className="text-center">
-            <button className="btn btn-success btn-lg" >Insertar</button>
+            <button className="btn btn-success btn-lg">Insertar</button>
           </div>
         </form>
       </div>

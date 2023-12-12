@@ -48,9 +48,9 @@ const Menu = () => {
                     </Link>
                   </li>
                   <li class="nav-item p-3 py-md-1">
-                    <a href="" class="nav-link">
-                      Mi título
-                    </a>
+                    <Link to="/20400775/encuesta" class="nav-link">
+                      Encuesta
+                    </Link>
                   </li>
                   <li class="nav-item p-3 py-md-1">
                     <a href="" class="nav-link">

@@ -1,4 +1,5 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../css/menuEgresado.css";
 import Opcion1 from "../img/Opcion1.png";
 import Opcion2 from "../img/Opcion2.png";
@@ -8,6 +9,13 @@ import Opcion4 from "../img/Opcion4.png";
 import { Link } from "react-router-dom";
 
 const MenuEgresado = () => {
+  const navigate = useNavigate();
+  const { noControl } = useParams();
+
+  useEffect(() => {
+    // Puedes realizar cualquier lógica adicional aquí si es necesario
+  }, [noControl]);
+
   return (
     <Fragment>
       <div class="contenedorDeMenu">
@@ -48,7 +56,10 @@ const MenuEgresado = () => {
                     </a>
                   </li>
                   <li class="nav-item p-3 py-md-1">
-                    <Link to="/login/menu/encuesta/:noControl" class="nav-link">
+                    <Link
+                      to={`/login/menu/${noControl}/encuesta`}
+                      class="nav-link"
+                    >
                       Encuesta
                     </Link>
                   </li>

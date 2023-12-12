@@ -238,6 +238,58 @@ app.get("/login/:nocontrol-:nip", async (req, res) => {
   }
 });
 
+app.post("/login/menu/:noControl/encuesta", async (req, res) => {
+  try {
+    console.log("Recibida solicitud POST para encuesta");
+    // Obtener los datos del cuerpo de la solicitud
+    const {
+      pregunta1,
+      pregunta2,
+      pregunta3,
+      pregunta4,
+      pregunta5,
+      pregunta6,
+      pregunta7,
+      pregunta8,
+      pregunta9,
+      pregunta10,
+      pregunta11,
+      pregunta12,
+      pregunta13,
+      pregunta14,
+      pregunta15,
+      nocontrol
+    } = req.body;
+
+    // Insertar la fecha actual utilizando CURRENT_DATE
+    const nuevaEncuesta = await pool.query(
+      'INSERT INTO encuesta (fecha, pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, pregunta9, pregunta10, pregunta11, pregunta12, pregunta13, pregunta14, pregunta15, nocontrol) VALUES (CURRENT_DATE, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)',
+      [
+        pregunta1,
+        pregunta2,
+        pregunta3,
+        pregunta4,
+        pregunta5,
+        pregunta6,
+        pregunta7,
+        pregunta8,
+        pregunta9,
+        pregunta10,
+        pregunta11,
+        pregunta12,
+        pregunta13,
+        pregunta14,
+        pregunta15,
+        nocontrol
+      ]
+    );
+    res.json({ mensaje: "Encuesta registrada correctamente" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json("Error en el servidor");
+  }
+});
+
 
 
 app.listen(5000, () => {

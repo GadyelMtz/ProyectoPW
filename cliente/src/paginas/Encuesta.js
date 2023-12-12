@@ -1,28 +1,98 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
+import { useParams } from "react-router-dom"; // Importar el hook useParams
 import "../css/encuesta.css";
 
 const Encuesta = () => {
+  const [formData, setFormData] = useState({
+    id_egresado: "", // Este valor se asigna en useEffect con el número de control
+
+    // Sección: Pertinencia y Disponibilidad de Medios
+    pregunta1: "",
+    pregunta2: "",
+    pregunta3: "",
+
+    // Sección: Ubicación Laboral
+    pregunta4: "",
+    pregunta5: "",
+    pregunta6: "",
+    pregunta6: "",
+    pregunta7: "",
+    pregunta8: "",
+    pregunta9: "",
+
+    // Sección: Desempeño Profesional
+    pregunta9: "",
+    pregunta10: "",
+    utilidad_residencias: "",
+
+    // Sección: Expectativas de Desarrollo
+    cursos_actualizacion: "",
+    posgrado: "",
+  });
+
+  // Usar el hook useParams para obtener el número de control de la URL
+  const { noControl } = useParams();
+
+  useEffect(() => {
+    // Actualizar el estado del formulario con el número de control
+    setFormData({
+      ...formData,
+      id_egresado: noControl,
+    });
+  }, [noControl]); // Agregar noControl como dependencia para que se actualice cuando cambie
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+        console.log("Datos que se enviarán:", formData); // Agrega esta línea
+      console.log(
+        `Enviando solicitud POST a: http://localhost:5000/login/menu/${formData.id_egresado}/encuesta`
+      );
+      const response = await fetch(
+        `http://localhost:5000/login/menu/${formData.id_egresado}/encuesta`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data); // Puedes hacer algo con la respuesta del servidor si es necesario
+      } else {
+        console.error("Error al enviar la encuesta");
+      }
+    } catch (error) {
+      console.error("Error de red:", error);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <Fragment>
       <div className="contenedorDeEncuesta">
         <h1>Encuesta de Seguimiento del Egresado</h1>
-
-        <form action=" " method="POST">
-          {/* <!-- Datos de la encuesta --> */}
-          <label for="id_encuesta">ID Encuesta:</label>
-          <input type="text" id="id_encuesta" name="id_encuesta" />
-          <br></br>
-          <br></br>
-
+        <form onSubmit={handleSubmit}>
           <label for="id_egresado">No. Control - Egresado:</label>
-          <input type="text" id="id_egresado" name="id_egresado" />
-          <br></br>
-          <br></br>
-
-          <label for="fecha_encuesta">Fecha de Encuesta:</label>
-          <input type="date" id="fecha_encuesta" name="fecha_encuesta" />
-          <br></br>
-          <br></br>
+          <input
+            type="text"
+            id="id_egresado"
+            name="id_egresado"
+            className="form-control"
+            value={formData.id_egresado}
+            onChange={handleChange}
+            readOnly
+          />
 
           {/* <!-- Sección: Pertinencia y Disponibilidad de Medios --> */}
           <h3>Pertinencia y Disponibilidad de Medios</h3>
@@ -33,13 +103,14 @@ const Encuesta = () => {
           </p>
 
           <div class="row">
-            <label for="calidad_docente">Calidad de los docentes:</label>
+            <label for="pregunta1">Calidad de los docentes:</label>
             <div class="col-3">
               <input
                 type="radio"
                 id="calidad_docente_MuyBuena"
-                name="calidad_docente"
+                name="pregunta1"
                 value="Muy buena"
+                onChange={handleChange}
               />
               <label for="calidad_docente_MuyBuena">Muy Buena</label>
             </div>
@@ -48,8 +119,9 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="calidad_docente_Buena"
-                name="calidad_docente"
+                name="pregunta1"
                 value="Buena"
+                onChange={handleChange}
               />
               <label for="calidad_docente_Buena">Buena</label>
             </div>
@@ -58,8 +130,9 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="calidad_docente_Regular"
-                name="calidad_docente"
+                name="pregunta1"
                 value="Regular"
+                onChange={handleChange}
               />
               <label for="calidad_docente_Regular">Regular</label>
             </div>
@@ -68,23 +141,25 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="calidad_docente_Mala"
-                name="calidad_docente"
+                name="pregunta1"
                 value="Mala"
+                onChange={handleChange}
               />
               <label for="calidad_docente_Mala">Mala</label>
               <br></br>
             </div>
           </div>
 
-          <label for="calidad_plan_estudios">Calidad Plan de Estudios:</label>
+          <label for="pregunta2">Calidad Plan de Estudios:</label>
 
           <div class="row">
             <div class="col-3">
               <input
                 type="radio"
                 id="calidad_plan_estudios_MuyBuena"
-                name="calidad_plan_estudios"
+                name="pregunta2"
                 value="Muy buena"
+                onChange={handleChange}
               />
               <label for="calidad_plan_estudios_MuyBuena">Muy Buena</label>
             </div>
@@ -93,8 +168,9 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="calidad_plan_estudios_Buena"
-                name="calidad_plan_estudios"
+                name="pregunta2"
                 value="Buena"
+                onChange={handleChange}
               />
               <label for="calidad_plan_estudios_Buena">Buena</label>
             </div>
@@ -103,8 +179,9 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="calidad_plan_estudios_Regular"
-                name="calidad_plan_estudios"
+                name="pregunta2"
                 value="Regular"
+                onChange={handleChange}
               />
               <label for="calidad_plan_estudios_Regular">Regular</label>
             </div>
@@ -113,8 +190,9 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="calidad_plan_estudios_Mala"
-                name="calidad_plan_estudios"
+                name="pregunta2"
                 value="Mala"
+                onChange={handleChange}
               />
               <label for="calidad_plan_estudios_Mala">Mala</label>
               <br></br>
@@ -129,8 +207,9 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="condiciones_infraestructura_MuyBuena"
-                name="condiciones_infraestructura"
+                name="pregunta3"
                 value="Muy buena"
+                onChange={handleChange}
               />
               <label for="condiciones_infraestructura_MuyBuena">
                 Muy Buena
@@ -141,8 +220,9 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="condiciones_infraestructura_Buena"
-                name="condiciones_infraestructura"
+                name="pregunta3"
                 value="Buena"
+                onChange={handleChange}
               />
               <label for="condiciones_infraestructura_Buena">Buena</label>
             </div>
@@ -151,8 +231,9 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="condiciones_infraestructura_Regular"
-                name="condiciones_infraestructura"
+                name="pregunta3"
                 value="Regular"
+                onChange={handleChange}
               />
               <label for="condiciones_infraestructura_Regular">Regular</label>
             </div>
@@ -161,23 +242,14 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="condiciones_infraestructura_Mala"
-                name="condiciones_infraestructura"
+                name="pregunta3"
                 value="Mala"
+                onChange={handleChange}
               />
               <label for="condiciones_infraestructura_Mala">Mala</label>
               <br></br>
             </div>
           </div>
-
-          {/* <!-- <input type="radio" id="condiciones_infraestructura_MuyBuena" name="condiciones_infraestructura"
-        value="muy buena">
-    <label for="condiciones_infraestructura_MuyBuena">Muy Buena</label>
-    <input type="radio" id="condiciones_infraestructura_Buena" name="condiciones_infraestructura" value="buena">
-    <label for="condiciones_infraestructura_Buena">Buena</label>
-    <input type="radio" id="condiciones_infraestructura_Regular" name="condiciones_infraestructura" value="regular">
-    <label for="condiciones_infraestructura_Regular">Regular</label>
-    <input type="radio" id="condiciones_infraestructura_Mala" name="condiciones_infraestructura" value="mala">
-    <label for="condiciones_infraestructura_Mala">Mala</label><br><br> --> */}
 
           {/* <!-- Sección: Ubicación Laboral --> */}
           <h3>Ubicación Laboral</h3>
@@ -186,10 +258,15 @@ const Encuesta = () => {
             actual
           </p>
 
-          <label for="situacion_actual">
+          <label for="pregunta4">
             Actividad a la que se dedica actualmente:
           </label>
-          <select id="situacion_actual" name="situacion_actual">
+          <select
+            id="pregunta4"
+            name="pregunta4"
+            onChange={handleChange}
+            value={formData.pregunta4 || ""}
+          >
             <option>- Seleccione -</option>
             <option value="Trabajando">Trabajando</option>
             <option value="Estudiando">Estudiando</option>
@@ -202,7 +279,7 @@ const Encuesta = () => {
 
           <h5>En caso de estudiar:</h5>
           <label for="estudio">Indicar si es:</label>
-          <select id="estudio" name="estudio">
+          <select id="pregunta5" name="pregunta5" onChange={handleChange}>
             <option>- Seleccione -</option>
             <option value="Especialidad">Especialidad</option>
             <option value="Maestría">Maestría</option>
@@ -220,6 +297,7 @@ const Encuesta = () => {
             id="empresa"
             name="empresa"
             placeholder="Indique la empresa en la que trabaja"
+            onChange={handleChange}
           />
           <br></br>
           <br></br>
@@ -227,7 +305,11 @@ const Encuesta = () => {
           <label for="tiempo_empleo">
             Tiempo transcurrido para obtener el primer empleo:
           </label>
-          <select id="tiempo_empleo" name="tiempo_empleo">
+          <select
+            id="pregunta6"
+            name="pregunta6"
+            onChange={handleChange}
+          >
             <option>- Seleccione -</option>
             <option value="Antes de egresar">Antes de Egresar</option>
             <option value="Menos de seis meses">Menos de seis meses</option>
@@ -241,7 +323,11 @@ const Encuesta = () => {
           <br></br>
 
           <label for="jerarquia_laboral">Nivel jerárquico en el trabajo:</label>
-          <select id="jerarquia_laboral" name="jerarquia_laboral">
+          <select
+            id="pregunta7"
+            name="pregunta7"
+            onChange={handleChange}
+          >
             <option>- Seleccione -</option>
 
             <option value="Técnico">Técnico</option>
@@ -256,7 +342,11 @@ const Encuesta = () => {
           <br></br>
 
           <label for="condicion_trabajo">Condición de trabajo:</label>
-          <select id="condicion_trabajo" name="condicion_trabajo">
+          <select
+            id="pregunta8"
+            name="pregunta8"
+            onChange={handleChange}
+          >
             <option>- Seleccione -</option>
 
             <option value="Base">Base</option>
@@ -268,7 +358,11 @@ const Encuesta = () => {
           <br></br>
 
           <label for="sector_trabajo">Sector:</label>
-          <select id="sector_trabajo" name="sector_trabajo">
+          <select
+            id="pregunta9"
+            name="pregunta9"
+            onChange={handleChange}
+          >
             <option>- Seleccione -</option>
             <option value="Agroindustria">Agroindustria (primario)</option>
             <option value="Pesquero">Pesquero (primario)</option>
@@ -298,8 +392,9 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="eficiencia_laboral_MuyBuena"
-                name="eficiencia_laboral"
+                name="pregunta9"
                 value="Muy buena"
+                onChange={handleChange}
               />
               <label for="eficiencia_laboral_MuyBuena">Muy Buena</label>
             </div>
@@ -308,8 +403,9 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="eficiencia_laboral_Buena"
-                name="eficiencia_laboral"
+                name="pregunta9"
                 value="Buena"
+                onChange={handleChange}
               />
               <label for="eficiencia_laboral_Buena">Buena</label>
             </div>
@@ -318,8 +414,9 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="eficiencia_laboral_Regular"
-                name="eficiencia_laboral"
+                name="pregunta9"
                 value="Regular"
+                onChange={handleChange}
               />
               <label for="eficiencia_laboral_Regular">Regular</label>
             </div>
@@ -328,22 +425,14 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="eficiencia_laboral_Mala"
-                name="eficiencia_laboral"
+                name="pregunta9"
                 value="Mala"
+                onChange={handleChange}
               />
               <label for="eficiencia_laboral_Mala">Mala</label>
               <br></br>
             </div>
           </div>
-
-          {/* <!-- <input type="radio" id="eficiencia_laboral_MuyEficiente" name="eficiencia_laboral" value="muy eficiente">
-    <label for="eficiencia_laboral_MuyEficiente">Muy eficiente</label>
-    <input type="radio" id="eficiencia_laboral_Eficiente" name="eficiencia_laboral" value="eficiente">
-    <label for="eficiencia_laboral_Eficiente">Eficiente</label>
-    <input type="radio" id="eficiencia_laboral_PocoEficiente" name="eficiencia_laboral" value="poco eficiente">
-    <label for="eficiencia_laboral_PocoEficiente">Poco eficiente</label>
-    <input type="radio" id="eficiencia_laboral_Deficiente" name="eficiencia_laboral" value="deficiente">
-    <label for="eficiencia_laboral_Deficiente">Deficiente</label><br><br> --> */}
 
           <label for="formación_academica">
             Cómo califica su formación académica con respecto a su desempeño
@@ -353,19 +442,21 @@ const Encuesta = () => {
             <div class="col-3">
               <input
                 type="radio"
-                id="formación_academica_MuyBuena"
-                name="formación_academica"
+                id="pregunta10"
+                name="pregunta10"
                 value="Muy buena"
+                onChange={handleChange}
               />
-              <label for="formación_academica_MuyBuena">Muy Buena</label>
+              <label for="pregunta10">Muy Buena</label>
             </div>
 
             <div class="col-3">
               <input
                 type="radio"
-                id="formación_academica_Buena"
-                name="formación_academica"
+                id="pregunta10"
+                name="pregunta10"
                 value="Buena"
+                onChange={handleChange}
               />
               <label for="formación_academica_Buena">Buena</label>
             </div>
@@ -373,9 +464,10 @@ const Encuesta = () => {
             <div class="col-3">
               <input
                 type="radio"
-                id="formación_academica_Regular"
-                name="formación_academica"
+                id="pregunta10"
+                name="pregunta10"
                 value="Regular"
+                onChange={handleChange}
               />
               <label for="formación_academica_Regular">Regular</label>
             </div>
@@ -383,22 +475,15 @@ const Encuesta = () => {
             <div class="col-3">
               <input
                 type="radio"
-                id="formación_academica_Mala"
-                name="formación_academica"
+                id="pregunta10"
+                name="pregunta10"
                 value="Mala"
+                onChange={handleChange}
               />
               <label for="formación_academica_Mala">Mala</label>
               <br></br>
             </div>
           </div>
-          {/* <!-- <input type="radio" id="formación_academica_MuyBuena" name="formación_academica" value="muy buena">
-    <label for="formación_academica_MuyBuena">Muy Buena</label>
-    <input type="radio" id="formación_academica_Buena" name="formación_academica" value="buena">
-    <label for="formación_academica_Buena">Buena</label>
-    <input type="radio" id="formación_academica_Regular" name="formación_academica" value="regular">
-    <label for="formación_academica_Regular">Regular</label>
-    <input type="radio" id="formación_academica_Mala" name="formación_academica" value="mala">
-    <label for="formación_academica_Mala">Mala</label><br><br> --> */}
 
           <label for="utilidad_residencias">
             Utilidad de las residencias profesionales o prácticas profesionales
@@ -411,6 +496,7 @@ const Encuesta = () => {
                 id="utilidad_residencias_MuyBuena"
                 name="utilidad_residencias"
                 value="Muy buena"
+                onChange={handleChange}
               />
               <label for="utilidad_residencias_MuyBuena">Muy Buena</label>
             </div>
@@ -421,6 +507,7 @@ const Encuesta = () => {
                 id="utilidad_residencias_Buena"
                 name="utilidad_residencias"
                 value="Buena"
+                onChange={handleChange}
               />
               <label for="utilidad_residencias_Buena">Buena</label>
             </div>
@@ -431,6 +518,7 @@ const Encuesta = () => {
                 id="utilidad_residencias_Regular"
                 name="utilidad_residencias"
                 value="Regular"
+                onChange={handleChange}
               />
               <label for="utilidad_residencias_Regular">Regular</label>
             </div>
@@ -441,20 +529,12 @@ const Encuesta = () => {
                 id="utilidad_residencias_Mala"
                 name="utilidad_residencias"
                 value="Mala"
+                onChange={handleChange}
               />
               <label for="utilidad_residencias_Mala">Mala</label>
               <br></br>
             </div>
           </div>
-
-          {/* <!-- <input type="radio" id="utilidad_residencias_MuyBuena" name="utilidad_residencias" value="muy buena">
-    <label for="utilidad_residencias_MuyBuena">Muy Buena</label>
-    <input type="radio" id="utilidad_residencias_Buena" name="utilidad_residencias" value="buena">
-    <label for="utilidad_residencias_Buena">Buena</label>
-    <input type="radio" id="utilidad_residencias_Regular" name="utilidad_residencias" value="regular">
-    <label for="utilidad_residencias_Regular">Regular</label>
-    <input type="radio" id="utilidad_residencias_Mala" name="utilidad_residencias" value="mala">
-    <label for="utilidad_residencias_Mala">Mala</label><br><br> --> */}
 
           <h3>Expectativas de Desarrollo</h3>
 
@@ -466,6 +546,7 @@ const Encuesta = () => {
                 id="cursos_si"
                 name="cursos_actualizacion"
                 value="Si"
+                onChange={handleChange}
               />
               <label for="cursos_si">Sí</label>
             </div>
@@ -476,6 +557,7 @@ const Encuesta = () => {
                 id="cursos_no"
                 name="cursos_actualizacion"
                 value="No"
+                onChange={handleChange}
               />
               <label for="cursos_no">No</label>
               <br></br>
@@ -488,8 +570,9 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="posgrado_si"
-                name="cursos_actualizacion"
+                name="cursos_posgrado"
                 value="Si"
+                onChange={handleChange}
               />
               <label for="posgrado_si">Sí</label>
             </div>
@@ -498,8 +581,9 @@ const Encuesta = () => {
               <input
                 type="radio"
                 id="posgrado_no"
-                name="cursos_actualizacion"
+                name="cursos_posgrado"
                 value="No"
+                onChange={handleChange}
               />
               <label for="posgrado_no">No</label>
               <br></br>

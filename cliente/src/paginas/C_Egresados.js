@@ -65,7 +65,6 @@ const RegistroEgresado = () => {
       return;
     }
 
-
     try {
       const cuerpoDelRegistro = {
         nocontrol,
@@ -142,17 +141,23 @@ const RegistroEgresado = () => {
               <div class="offcanvas-body d-flex flex-column justify-content-between px-0">
                 <ul class="navbar-nav fs-5 justify-content-evenly">
                   <li class="nav-item p-3 py-md-1">
-                    <a href="" class="nav-link">
+                    <Link to="/login/menu-administrador" class="nav-link">
                       Inicio
-                    </a>
+                    </Link>
                   </li>
                   <li class="nav-item p-3 py-md-1">
-                    <Link to="/login/menu-administrador/consultar-egresados" class="nav-link">
+                    <Link
+                      to="/login/menu-administrador/consultar-egresados"
+                      class="nav-link"
+                    >
                       Ver egresados
                     </Link>
                   </li>
                   <li class="nav-item p-3 py-md-1">
-                    <Link to="/login/menu-administrador/registrar-egresados" class="nav-link">
+                    <Link
+                      to="/login/menu-administrador/registrar-egresados"
+                      class="nav-link"
+                    >
                       Registrar egresado
                     </Link>
                   </li>
@@ -185,9 +190,11 @@ const RegistroEgresado = () => {
 
       <div className="contenedorCEgresados">
         <div className="container">
-          <h2 className="text-center mt-4 text-azul fs-3"> Registro de egresados</h2>
+          <h2 className="text-center mt-4 text-azul fs-3">
+            {" "}
+            Registro de egresados
+          </h2>
           <form className="mt-5" onSubmit={registrarEgresado}>
-
             <div className="row">
               <div className="col-md-3 mb-3">
                 <label htmlFor="apellidopaterno" className="form-label">
@@ -243,12 +250,12 @@ const RegistroEgresado = () => {
             </div>
 
             <div className="row">
-
               <div className="col-md-4 mb-3">
                 <label htmlFor="fechanacimiento" className="form-label">
                   Fecha de Nacimiento
                 </label>
-                <input className="form-control"
+                <input
+                  className="form-control"
                   type="date"
                   onChange={(e) => setfechanacimiento(parseISO(e.target.value))}
                 />
@@ -258,7 +265,6 @@ const RegistroEgresado = () => {
                 <label className="form-label">Sexo</label>
 
                 <div className="row">
-
                   <div className="form-check col-md-3 mb-3">
                     <input
                       class="form-check-input"
@@ -282,16 +288,13 @@ const RegistroEgresado = () => {
                     />
                     <label class="form-check-label">Hombre</label>
                   </div>
-
                 </div>
-
               </div>
 
               <div className="col-md-4 mb-3">
                 <label className="form-label">Estado civil</label>
 
                 <div className="row">
-
                   <div className="form-check col-md-4 mb-3">
                     <input
                       class="form-check-input"
@@ -327,14 +330,11 @@ const RegistroEgresado = () => {
                     />
                     <label class="form-check-label">Otro</label>
                   </div>
-
                 </div>
               </div>
-
             </div>
 
             <div className="row">
-
               <div className="col-md-3 mb-3">
                 <label htmlFor="domicilio" className="form-label">
                   Domicilio
@@ -358,40 +358,39 @@ const RegistroEgresado = () => {
                   className={`form-control ${isValidCP ? "" : "is-invalid"}`}
                   value={cp}
                   onChange={handleCPChange}
-                onFocus={() => console.log("Input de Código Postal en foco")}
-                onBlur={handleCPBlur}
+                  onFocus={() => console.log("Input de Código Postal en foco")}
+                  onBlur={handleCPBlur}
                 />
               </div>
 
-            <div className="col-md-3 mb-3">
-              <label htmlFor="municipio" className="form-label">
-                Municipio
-              </label>
-              <input
-                id="municipio"
-                type="text"
-                className="form-control"
-                value={locationData.municipio}
-                readOnly
-              />
-            </div>
+              <div className="col-md-3 mb-3">
+                <label htmlFor="municipio" className="form-label">
+                  Municipio
+                </label>
+                <input
+                  id="municipio"
+                  type="text"
+                  className="form-control"
+                  value={locationData.municipio}
+                  readOnly
+                />
+              </div>
 
-            <div className="col-md-3 mb-3">
-              <label htmlFor="estado" className="form-label">
-                Estado
-              </label>
-              <input
-                id="estado"
-                type="text"
-                className="form-control"
-                value={locationData.estado}
-                readOnly
-              />
+              <div className="col-md-3 mb-3">
+                <label htmlFor="estado" className="form-label">
+                  Estado
+                </label>
+                <input
+                  id="estado"
+                  type="text"
+                  className="form-control"
+                  value={locationData.estado}
+                  readOnly
+                />
+              </div>
             </div>
-          </div>
 
             <div className="row">
-
               <div className="col-md-4 mb-3">
                 <label htmlFor="telefono" className="form-label">
                   Teléfono
@@ -410,19 +409,18 @@ const RegistroEgresado = () => {
                   Fecha de egreso
                 </label>
                 <input
-                  type="date" className="form-control"
+                  type="date"
+                  className="form-control"
                   onChange={(e) => setfechaegreso(parseISO(e.target.value))}
                 />
               </div>
 
               <div className="col-md-4 mb-3">
-
                 <label htmlFor="titulado" className="form-label">
                   Titulado:
                 </label>
 
                 <div className="row">
-                  
                   <div className="form-check col-md-3 mb-3">
                     <input
                       class="form-check-input"
@@ -446,37 +444,49 @@ const RegistroEgresado = () => {
                     />
                     <label class="form-check-label">No</label>
                   </div>
-
                 </div>
               </div>
-
             </div>
 
-          <div className="row">
-            <div className="col-md-6 mb-3">
-              <label htmlFor="carrera" className="form-label">
-                Carrera
-              </label>
-              <select
-                id="carrera"
-                name="carrera"
-                value={carrera}
-                onChange={(e) => setcarrera(e.target.value)}
-                className="form-control"
-              >
-                <option value="">- Seleccione -</option>
-                <option value="IngenieriaIndustrial">
-                  Ingeniería Industrial
-                </option>
-                <option value="LicenciaturaAdminEmpresas">
-                  Licenciatura en Administración de Empresas
-                </option>
-                <option value="IngenieriaSistemasComputacionales">
-                  Ingeniería en Sistemas Computacionales
-                </option>
-                {/* ... Agrega más opciones según sea necesario */}
-              </select>
-            </div>
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label htmlFor="carrera" className="form-label">
+                  Carrera
+                </label>
+                <select
+                  id="carrera"
+                  name="carrera"
+                  value={carrera}
+                  onChange={(e) => setcarrera(e.target.value)}
+                  className="form-control"
+                >
+                  <option value="">- Seleccione -</option>
+                  <option value="Ingenieria Industrial">
+                    Ingeniería Industrial
+                  </option>
+                  <option value="Licenciatura en administración">
+                    Licenciatura en administración
+                  </option>
+                  <option value="Ingenieria en gestión empresarial">
+                    Ingenieria en gestión empresarial
+                  </option>
+                  <option value="Ingenieria en sistemas computacionales">
+                    Ingeniería en Sistemas Computacionales
+                  </option>
+                  <option value="Ingenieria bioquimica">
+                    Ingeniería bioquimica
+                  </option>
+                  <option value="Ingenieria bioquimica">
+                    Ingeniería bioquimica
+                  </option>
+                  <option value="Ingenieria eléctrica">
+                    Ingeniería eléctrica
+                  </option>
+                  <option value="Ingenieria mecatrónica">
+                    Ingeniería mecatrónica
+                  </option>
+                </select>
+              </div>
 
               <div className="col-md-6 mb-3">
                 <label htmlFor="especialidad" className="form-label">
@@ -490,13 +500,11 @@ const RegistroEgresado = () => {
                   onChange={(e) => setespecialidad(e.target.value)}
                 />
               </div>
-
             </div>
 
             <div className="text-center">
-              <button className="btn btn-success btn-lg" >Insertar</button>
+              <button className="btn btn-success btn-lg">Insertar</button>
             </div>
-            
           </form>
         </div>
       </div>

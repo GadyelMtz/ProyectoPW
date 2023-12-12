@@ -68,9 +68,9 @@ const DetalleEgresado = () => {
               <div class="offcanvas-body d-flex flex-column justify-content-between px-0">
                 <ul class="navbar-nav fs-5 justify-content-evenly">
                   <li class="nav-item p-3 py-md-1">
-                    <a href="" class="nav-link">
+                  <Link to="/login/menu-administrador/" class="nav-link">
                       Inicio
-                    </a>
+                    </Link>
                   </li>
                   <li class="nav-item p-3 py-md-1">
                     <Link to="/login/menu-administrador/consultar-egresados" class="nav-link">
@@ -169,8 +169,8 @@ const DetalleEgresado = () => {
             <div className="row">
               <div className="col-md-3">
                 <div className="form-group">
-                  <label htmlFor="campo7">Ciudad:</label>
-                  <p id="campo7">{egresado.ciudad}</p>
+                  <label htmlFor="campo7">Codigo postal:</label>
+                  <p id="campo7">{egresado.cp}</p>
 
                 </div>
               </div>

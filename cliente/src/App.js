@@ -9,6 +9,7 @@ import Login from "./paginas/Login";
 import Principal from "./paginas/Principal";
 import MenuAdministrador from "./paginas/MenuAdministrador";
 import MenuEgresado from "./paginas/MenuEgresado";
+import TrabajoISC from "./paginas/Trabajo";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
       <Route path="/login/menu-administrador/eliminar-egresado/:noControl" element={<RUD_Egresados />} />
       
       <Route path="/login/menu/:noControl" element={<MenuEgresado />}/>
+      <Route path="/login/menu/:noControl/trabajo" element={<TrabajoISC />}/>
       <Route path="/login/menu/:noControl/encuesta" element={<Encuesta />}/>
     </Routes>
   </Router>

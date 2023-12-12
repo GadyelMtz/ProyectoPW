@@ -34,6 +34,7 @@ const Login = () => {
       console.log(response);
 
       const data = await response.json();
+      console.log("Datos recuperados:", data);
       setPrivilegio(data.privilegio);
       console.log(data.privilegio);
 

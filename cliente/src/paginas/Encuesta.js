@@ -4,7 +4,7 @@ import "../css/encuesta.css";
 
 const Encuesta = () => {
   const [formData, setFormData] = useState({
-    id_egresado: "", // Este valor se asigna en useEffect con el número de control
+    nocontrol: "", // Este valor se asigna en useEffect con el número de control
 
     // Sección: Pertinencia y Disponibilidad de Medios
     pregunta1: "",
@@ -15,19 +15,19 @@ const Encuesta = () => {
     pregunta4: "",
     pregunta5: "",
     pregunta6: "",
-    pregunta6: "",
     pregunta7: "",
     pregunta8: "",
     pregunta9: "",
+    pregunta10: "",
 
     // Sección: Desempeño Profesional
-    pregunta9: "",
-    pregunta10: "",
-    utilidad_residencias: "",
+    pregunta11: "",
+    pregunta12: "",
+    pregunta13: "",
 
     // Sección: Expectativas de Desarrollo
-    cursos_actualizacion: "",
-    posgrado: "",
+    pregunta14: "",
+    pregunta15: "",
   });
 
   // Usar el hook useParams para obtener el número de control de la URL
@@ -37,7 +37,7 @@ const Encuesta = () => {
     // Actualizar el estado del formulario con el número de control
     setFormData({
       ...formData,
-      id_egresado: noControl,
+      nocontrol: noControl,
     });
   }, [noControl]); // Agregar noControl como dependencia para que se actualice cuando cambie
 
@@ -294,8 +294,8 @@ const Encuesta = () => {
           <label for="empresa">Empresa:</label>
           <input
             type="text"
-            id="empresa"
-            name="empresa"
+            id="pregunta6"
+            name="pregunta6"
             placeholder="Indique la empresa en la que trabaja"
             onChange={handleChange}
           />
@@ -306,8 +306,8 @@ const Encuesta = () => {
             Tiempo transcurrido para obtener el primer empleo:
           </label>
           <select
-            id="pregunta6"
-            name="pregunta6"
+            id="pregunta7"
+            name="pregunta7"
             onChange={handleChange}
           >
             <option>- Seleccione -</option>
@@ -324,8 +324,8 @@ const Encuesta = () => {
 
           <label for="jerarquia_laboral">Nivel jerárquico en el trabajo:</label>
           <select
-            id="pregunta7"
-            name="pregunta7"
+            id="pregunta8"
+            name="pregunta8"
             onChange={handleChange}
           >
             <option>- Seleccione -</option>
@@ -343,8 +343,8 @@ const Encuesta = () => {
 
           <label for="condicion_trabajo">Condición de trabajo:</label>
           <select
-            id="pregunta8"
-            name="pregunta8"
+            id="pregunta9"
+            name="pregunta9"
             onChange={handleChange}
           >
             <option>- Seleccione -</option>
@@ -359,8 +359,8 @@ const Encuesta = () => {
 
           <label for="sector_trabajo">Sector:</label>
           <select
-            id="pregunta9"
-            name="pregunta9"
+            id="pregunta10"
+            name="pregunta10"
             onChange={handleChange}
           >
             <option>- Seleccione -</option>
@@ -391,8 +391,8 @@ const Encuesta = () => {
             <div class="col-3">
               <input
                 type="radio"
-                id="eficiencia_laboral_MuyBuena"
-                name="pregunta9"
+                id="pregunta11"
+                name="pregunta11"
                 value="Muy buena"
                 onChange={handleChange}
               />
@@ -402,8 +402,8 @@ const Encuesta = () => {
             <div class="col-3">
               <input
                 type="radio"
-                id="eficiencia_laboral_Buena"
-                name="pregunta9"
+                id="pregunta11"
+                name="pregunta11"
                 value="Buena"
                 onChange={handleChange}
               />
@@ -413,8 +413,8 @@ const Encuesta = () => {
             <div class="col-3">
               <input
                 type="radio"
-                id="eficiencia_laboral_Regular"
-                name="pregunta9"
+                id="pregunta11"
+                name="pregunta11"
                 value="Regular"
                 onChange={handleChange}
               />
@@ -424,8 +424,8 @@ const Encuesta = () => {
             <div class="col-3">
               <input
                 type="radio"
-                id="eficiencia_laboral_Mala"
-                name="pregunta9"
+                id="pregunta11"
+                name="pregunta11"
                 value="Mala"
                 onChange={handleChange}
               />
@@ -442,19 +442,19 @@ const Encuesta = () => {
             <div class="col-3">
               <input
                 type="radio"
-                id="pregunta10"
-                name="pregunta10"
+                id="pregunta12"
+                name="pregunta12"
                 value="Muy buena"
                 onChange={handleChange}
               />
-              <label for="pregunta10">Muy Buena</label>
+              <label for="pregunta12">Muy Buena</label>
             </div>
 
             <div class="col-3">
               <input
                 type="radio"
-                id="pregunta10"
-                name="pregunta10"
+                id="pregunta12"
+                name="pregunta12"
                 value="Buena"
                 onChange={handleChange}
               />
@@ -464,8 +464,8 @@ const Encuesta = () => {
             <div class="col-3">
               <input
                 type="radio"
-                id="pregunta10"
-                name="pregunta10"
+                id="pregunta12"
+                name="pregunta12"
                 value="Regular"
                 onChange={handleChange}
               />
@@ -475,8 +475,8 @@ const Encuesta = () => {
             <div class="col-3">
               <input
                 type="radio"
-                id="pregunta10"
-                name="pregunta10"
+                id="pregunta12"
+                name="pregunta12"
                 value="Mala"
                 onChange={handleChange}
               />
@@ -493,8 +493,8 @@ const Encuesta = () => {
             <div class="col-3">
               <input
                 type="radio"
-                id="utilidad_residencias_MuyBuena"
-                name="utilidad_residencias"
+                id="pregunta13"
+                name="pregunta13"
                 value="Muy buena"
                 onChange={handleChange}
               />
@@ -504,8 +504,8 @@ const Encuesta = () => {
             <div class="col-3">
               <input
                 type="radio"
-                id="utilidad_residencias_Buena"
-                name="utilidad_residencias"
+                id="pregunta13"
+                name="pregunta13"
                 value="Buena"
                 onChange={handleChange}
               />
@@ -515,8 +515,8 @@ const Encuesta = () => {
             <div class="col-3">
               <input
                 type="radio"
-                id="utilidad_residencias_Regular"
-                name="utilidad_residencias"
+                id="pregunta13"
+                name="pregunta13"
                 value="Regular"
                 onChange={handleChange}
               />
@@ -526,8 +526,8 @@ const Encuesta = () => {
             <div class="col-3">
               <input
                 type="radio"
-                id="utilidad_residencias_Mala"
-                name="utilidad_residencias"
+                id="pregunta13"
+                name="pregunta13"
                 value="Mala"
                 onChange={handleChange}
               />
@@ -543,8 +543,8 @@ const Encuesta = () => {
             <div class="col-6">
               <input
                 type="radio"
-                id="cursos_si"
-                name="cursos_actualizacion"
+                id="pregunta14"
+                name="pregunta14"
                 value="Si"
                 onChange={handleChange}
               />
@@ -554,8 +554,8 @@ const Encuesta = () => {
             <div class="col-6">
               <input
                 type="radio"
-                id="cursos_no"
-                name="cursos_actualizacion"
+                id="pregunta14"
+                name="pregunta14"
                 value="No"
                 onChange={handleChange}
               />
@@ -569,8 +569,8 @@ const Encuesta = () => {
             <div class="col-6">
               <input
                 type="radio"
-                id="posgrado_si"
-                name="cursos_posgrado"
+                id="pregunta15"
+                name="pregunta15"
                 value="Si"
                 onChange={handleChange}
               />
@@ -580,8 +580,8 @@ const Encuesta = () => {
             <div class="col-6">
               <input
                 type="radio"
-                id="posgrado_no"
-                name="cursos_posgrado"
+                id="pregunta15"
+                name="pregunta15"
                 value="No"
                 onChange={handleChange}
               />

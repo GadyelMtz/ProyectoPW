@@ -1,7 +1,10 @@
 // Principal.js
 import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import '../css/Principal.css'
+import '../css/Principal.css';
+import Tec from "../img/tec.png";
+import logoITTepic from "../img/logoITTepic.png";
+import logoTecNM from "../img/logoTecNM.png";
 
 const Principal = () => {
   return (
@@ -17,7 +20,7 @@ const Principal = () => {
         </nav>
 
         <div id="contenedor">
-          <img src="img/tec.png" id="imagenTec" />
+          <img src={Tec} id="imagenTec" />
         </div>
 
         <div id="mensajeBienvenida">
@@ -43,11 +46,11 @@ const Principal = () => {
           </div>
 
           <div id="logoFooterITTepic">
-            <img src="img/logoITTepic.png" id="imgLogoITTepic" />
+            <img src={logoITTepic} id="imgLogoITTepic" />
           </div>
 
           <div id="logoFooterTecNM">
-            <img src="img/logoTecNM.png" id="imgLogoTecNM" />
+            <img src={logoTecNM} id="imgLogoTecNM" />
           </div>
         </footer>
       </div>

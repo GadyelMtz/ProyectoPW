@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import '../css/menu.css'
+import "../css/menuAdministrador.css";
 import { Link } from "react-router-dom";
 
 const MenuAdministrador = () => {
@@ -43,12 +43,18 @@ const MenuAdministrador = () => {
                     </a>
                   </li>
                   <li class="nav-item p-3 py-md-1">
-                    <Link to="/login/menu-administrador/consultar-egresados" class="nav-link">
+                    <Link
+                      to="/login/menu-administrador/consultar-egresados"
+                      class="nav-link"
+                    >
                       Ver egresados
                     </Link>
                   </li>
                   <li class="nav-item p-3 py-md-1">
-                    <Link to="/login/menu-administrador/registrar-egresados" class="nav-link">
+                    <Link
+                      to="/login/menu-administrador/registrar-egresados"
+                      class="nav-link"
+                    >
                       Registrar egresado
                     </Link>
                   </li>

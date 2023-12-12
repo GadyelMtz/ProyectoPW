@@ -2,6 +2,8 @@ import React, { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../css/login.css";
+import logoITTepic from "../img/logoITTepic.png";
+import logoTecNM from "../img/logoTecNM.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -126,14 +128,14 @@ const Login = () => {
 
           <div id="logoFooterITTepic">
             <img
-              src="img/logoITTepic.png"
+              src={logoITTepic}
               id="imgLogoITTepic"
               alt="Logo ITTepic"
             />
           </div>
 
           <div id="logoFooterTecNM">
-            <img src="img/logoTecNM.png" id="imgLogoTecNM" alt="Logo TecNM" />
+            <img src={logoTecNM} id="imgLogoTecNM" alt="Logo TecNM" />
           </div>
         </footer>
       </div>

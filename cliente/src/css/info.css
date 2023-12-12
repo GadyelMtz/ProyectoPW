@@ -1,0 +1,56 @@
+/* Estilos CSS */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.background-image {
+  background-image: url('Opcion1.png'); /* Reemplaza con tu imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+}
+
+.titulacion {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.titulacion-item {
+  width: 600px; /* Ancho del recuadro */
+  background-color: rgba(255, 255, 255, 0.8); /* Color de fondo con transparencia */
+  border-radius: 8px;
+  margin: 20px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+}
+
+.titulacion-item img {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.titulacion-item .titulacion-info {
+  flex: 1;
+}
+
+.titulacion-item h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.titulacion-item p {
+  color: #333;
+}

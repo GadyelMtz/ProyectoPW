@@ -7,7 +7,7 @@ const RUD_Egresados = () => {
 
   const getEgresados = async () => {
     try {
-      const respuesta = await fetch("http://localhost:5000/consultar-egresados");
+      const respuesta = await fetch("http://localhost:5000/login/menu-administrador/consultar-egresados");
       const jsonData = await respuesta.json();
       setEgresados(jsonData);
     } catch (error) {
@@ -22,7 +22,7 @@ const RUD_Egresados = () => {
         return; // Cancelar la eliminación si el usuario elige cancelar
       }
 
-      await fetch(`http://localhost:5000/eliminar-egresado/${nocontrol}`, {
+      await fetch(`http://localhost:5000/login/menu-administrador/eliminar-egresado/${nocontrol}`, {
         method: "DELETE",
       });
 
@@ -55,7 +55,7 @@ const RUD_Egresados = () => {
               <td>
                 <Link
                   to={{
-                    pathname: `/consultar-egresados/${egresado.nocontrol}`,
+                    pathname: `/login/menu-administrador/consultar-egresados/${egresado.nocontrol}`,
                     state: { egresado },
                   }}
                 >
@@ -67,7 +67,7 @@ const RUD_Egresados = () => {
               <td>
                 <Link
                   to={{
-                    pathname: `/editar-egresado/${egresado.nocontrol}`,
+                    pathname: `/login/menu-administrador/editar-egresado/${egresado.nocontrol}`,
                     state: { egresado },
                   }}
                 >

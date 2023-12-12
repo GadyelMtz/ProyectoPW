@@ -36,9 +36,9 @@ const Login = () => {
       console.log(data.privilegio);
 
       if (data.privilegio === "Administrador") {
-        navigate("/consultar-egresados");
+        navigate("/login/menu-administrador");
       } else if (data.privilegio === "Egresado") {
-        navigate("/menu");
+        navigate(`/${noControl}/menu`);
       } else {
         console.error(
           `Error al realizar el inicio de sesión: ${response.status}`

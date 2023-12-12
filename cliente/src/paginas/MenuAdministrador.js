@@ -2,14 +2,14 @@ import React, { Fragment } from "react";
 import '../css/menu.css'
 import { Link } from "react-router-dom";
 
-const Menu = () => {
+const MenuAdministrador = () => {
   return (
     <Fragment>
       <div class="contenedorDeMenu">
         <nav class="navbar navbar-expand-lg navbar-dark ">
           <div class="container-fluid">
             <a href="" class="navbar-brand text-info fw-semibold fs-4">
-              Portal de egresados
+              Portal de egresados / Administrador
             </a>
             <button
               class="navbar-toggler"
@@ -82,4 +82,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default MenuAdministrador;

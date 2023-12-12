@@ -57,8 +57,10 @@
 
   #logoFooterITTepic {
     display: flex;
-    justify-content: center; /* Centra la imagen en el contenedor */
-    align-items: center; /* Centra verticalmente la imagen en el contenedor */
+    justify-content: center;
+    /* Centra la imagen en el contenedor */
+    align-items: center;
+    /* Centra verticalmente la imagen en el contenedor */
     padding-right: 100px;
   }
 
@@ -69,8 +71,10 @@
 
   #logoFooterTecNM {
     display: flex;
-    justify-content: center; /* Centra la imagen en el contenedor */
-    align-items: center; /* Centra verticalmente la imagen en el contenedor */
+    justify-content: center;
+    /* Centra la imagen en el contenedor */
+    align-items: center;
+    /* Centra verticalmente la imagen en el contenedor */
   }
 
   #imagenTec {

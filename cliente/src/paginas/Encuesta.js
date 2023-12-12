@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useParams } from "react-router-dom"; // Importar el hook useParams
 import "../css/encuesta.css";
-
+import { Link } from "react-router-dom";
 const Encuesta = () => {
   const [formData, setFormData] = useState({
     nocontrol: "", // Este valor se asigna en useEffect con el número de control
@@ -93,6 +93,94 @@ const Encuesta = () => {
             onChange={handleChange}
             readOnly
           />
+    return (
+        <Fragment>
+            <div class="contenedorDeMenu">
+                <nav class="navbar navbar-expand-lg navbar-dark ">
+                    <div class="container-fluid">
+                        <a href="" class="navbar-brand text-info fw-semibold fs-4">
+                            Portal de egresados
+                        </a>
+                        <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="offcanvas"
+                            data-bs-target="#menuLateral"
+                        >
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <section
+                            class="offcanvas offcanvas-start"
+                            id="menuLateral"
+                            tabindex="-1"
+                        >
+                            <div class="offcanvas-header" data-bs-theme="dark">
+                                <h5 class="offcanvas-title text-info">PDE</h5>
+                                <button
+                                    class="btn-close"
+                                    type="button"
+                                    aria-label="btn-close"
+                                    data-bs-dismiss="offcanvas"
+                                ></button>
+                            </div>
+
+                            <div class="offcanvas-body d-flex flex-column justify-content-between px-0">
+                                <ul class="navbar-nav fs-5 justify-content-evenly">
+                                    <li class="nav-item p-3 py-md-1">
+                                        <a href="" class="nav-link">
+                                            Inicio
+                                        </a>
+                                    </li>
+                                    <li class="nav-item p-3 py-md-1">
+                                        <Link to="/login/menu/encuesta/:noControl" class="nav-link">
+                                            Encuesta
+                                        </Link>
+                                    </li>
+                                    <li class="nav-item p-3 py-md-1">
+                                        <Link to="" class="nav-link">
+                                            Enlace vacio
+                                        </Link>
+                                    </li>
+                                    <li class="nav-item p-3 py-md-1">
+                                        <Link to="/" class="nav-link">
+                                            Cerrar sesión
+                                        </Link>
+                                    </li>
+                                </ul>
+
+                                <div class="d-lg-none align-self-center py-3">
+                                    <a href="">
+                                        <i class="bi bi-facebook px-2 text-info fs-2"></i>
+                                    </a>
+                                    <a href="">
+                                        <i class="bi bi-twitter-x px-2 text-info fs-2"></i>
+                                    </a>
+                                    <a href="">
+                                        <i class="bi bi-whatsapp px-2 text-info fs-2"></i>
+                                    </a>
+                                    <a href="">
+                                        <i class="bi bi-github px-2 text-info fs-2"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </nav>
+            </div>
+            <div className="contenedorDeEncuesta">
+                <h1 className="text-center mt-4 text-azul fs-3">Encuesta de Seguimiento del Egresado</h1>
+
+                <form action=" " method="POST">
+                    {/* <!-- Datos de la encuesta --> */}
+                    <label for="id_encuesta">ID Encuesta:</label>
+                    <input type="text" id="id_encuesta" name="id_encuesta" /><br></br><br></br>
+
+                    <label for="id_egresado">No. Control - Egresado:</label>
+                    <input type="text" id="id_egresado" name="id_egresado" /><br></br><br></br>
+
+                    <label for="fecha_encuesta">Fecha de Encuesta:</label>
+                    <input type="date" id="fecha_encuesta" name="fecha_encuesta" /><br></br><br></br>
 
           {/* <!-- Sección: Pertinencia y Disponibilidad de Medios --> */}
           <h3>Pertinencia y Disponibilidad de Medios</h3>
@@ -102,141 +190,141 @@ const Encuesta = () => {
             cursó y las condiciones del plantel en cuanto a infraestructura.
           </p>
 
-          <div class="row">
-            <label for="pregunta1">Calidad de los docentes:</label>
-            <div class="col-3">
-              <input
+                          <div class="row">
+                            <label for="pregunta1">Calidad de los docentes:</label>
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="calidad_docente_MuyBuena"
                 name="pregunta1"
                 value="Muy buena"
                 onChange={handleChange}
-              />
-              <label for="calidad_docente_MuyBuena">Muy Buena</label>
-            </div>
+               />
+                              <label for="calidad_docente_MuyBuena">Muy Buena</label>
+                            </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="calidad_docente_Buena"
                 name="pregunta1"
                 value="Buena"
                 onChange={handleChange}
-              />
-              <label for="calidad_docente_Buena">Buena</label>
-            </div>
+               />
+                              <label for="calidad_docente_Buena">Buena</label>
+                            </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="calidad_docente_Regular"
                 name="pregunta1"
                 value="Regular"
                 onChange={handleChange}
-              />
-              <label for="calidad_docente_Regular">Regular</label>
-            </div>
+               />
+                              <label for="calidad_docente_Regular">Regular</label>
+                            </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="calidad_docente_Mala"
                 name="pregunta1"
                 value="Mala"
                 onChange={handleChange}
-              />
-              <label for="calidad_docente_Mala">Mala</label>
+               />
+                              <label for="calidad_docente_Mala">Mala</label>
               <br></br>
-            </div>
-          </div>
+                            </div>
+                          </div>
 
           <label for="pregunta2">Calidad Plan de Estudios:</label>
 
-          <div class="row">
-            <div class="col-3">
-              <input
+                          <div class="row">
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="calidad_plan_estudios_MuyBuena"
                 name="pregunta2"
                 value="Muy buena"
                 onChange={handleChange}
-              />
-              <label for="calidad_plan_estudios_MuyBuena">Muy Buena</label>
-            </div>
+               />
+                              <label for="calidad_plan_estudios_MuyBuena">Muy Buena</label>
+                            </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="calidad_plan_estudios_Buena"
                 name="pregunta2"
                 value="Buena"
                 onChange={handleChange}
-              />
-              <label for="calidad_plan_estudios_Buena">Buena</label>
-            </div>
+               />
+                              <label for="calidad_plan_estudios_Buena">Buena</label>
+                            </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="calidad_plan_estudios_Regular"
                 name="pregunta2"
                 value="Regular"
                 onChange={handleChange}
-              />
-              <label for="calidad_plan_estudios_Regular">Regular</label>
-            </div>
+               />
+                              <label for="calidad_plan_estudios_Regular">Regular</label>
+                            </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="calidad_plan_estudios_Mala"
                 name="pregunta2"
                 value="Mala"
                 onChange={handleChange}
-              />
-              <label for="calidad_plan_estudios_Mala">Mala</label>
+               />
+                              <label for="calidad_plan_estudios_Mala">Mala</label>
               <br></br>
-            </div>
-          </div>
+                            </div>
+                          </div>
 
-          <label for="condiciones_infraestructura">
+                          <label for="condiciones_infraestructura">
             Satisfacción con las condiciones de estudio (infraestructura):
           </label>
-          <div class="row">
-            <div class="col-3">
-              <input
+                          <div class="row">
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="condiciones_infraestructura_MuyBuena"
                 name="pregunta3"
-                value="Muy buena"
+                                value="Muy buena"
                 onChange={handleChange}
-              />
-              <label for="condiciones_infraestructura_MuyBuena">
+               />
+                              <label for="condiciones_infraestructura_MuyBuena">
                 Muy Buena
               </label>
-            </div>
+                            </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="condiciones_infraestructura_Buena"
                 name="pregunta3"
-                value="Buena"
+                                value="Buena"
                 onChange={handleChange}
-              />
-              <label for="condiciones_infraestructura_Buena">Buena</label>
-            </div>
+               />
+                              <label for="condiciones_infraestructura_Buena">Buena</label>
+                            </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="condiciones_infraestructura_Regular"
                 name="pregunta3"
-                value="Regular"
+                                value="Regular"
                 onChange={handleChange}
-              />
-              <label for="condiciones_infraestructura_Regular">Regular</label>
-            </div>
+               />
+                              <label for="condiciones_infraestructura_Regular">Regular</label>
+                            </div>
 
             <div class="col-3">
               <input
@@ -290,13 +378,13 @@ const Encuesta = () => {
           <br></br>
           <br></br>
 
-          <h5>En caso de trabajar:</h5>
-          <label for="empresa">Empresa:</label>
-          <input
+                          <h5>En caso de trabajar:</h5>
+                          <label for="empresa">Empresa:</label>
+                          <input
             type="text"
             id="pregunta6"
             name="pregunta6"
-            placeholder="Indique la empresa en la que trabaja"
+            placeholder="Indique la empresa en la que trabaja" 
             onChange={handleChange}
           />
           <br></br>
@@ -384,55 +472,55 @@ const Encuesta = () => {
           {/* <!-- Agrega más campos según sea necesario para esta sección -->
 
     <!-- Sección: Desempeño Profesional --> */}
-          <h3>Desempeño Profesional</h3>
+                          <h3>Desempeño Profesional</h3>
 
-          <label for="eficiencia_laboral">Eficiencia Laboral:</label>
-          <div class="row">
-            <div class="col-3">
-              <input
+                          <label for="eficiencia_laboral">Eficiencia Laboral:</label>
+                          <div class="row">
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="pregunta11"
                 name="pregunta11"
                 value="Muy buena"
                 onChange={handleChange}
-              />
-              <label for="eficiencia_laboral_MuyBuena">Muy Buena</label>
-            </div>
+               />
+                              <label for="eficiencia_laboral_MuyBuena">Muy Buena</label>
+                            </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="pregunta11"
                 name="pregunta11"
                 value="Buena"
                 onChange={handleChange}
-              />
-              <label for="eficiencia_laboral_Buena">Buena</label>
-            </div>
+               />
+                              <label for="eficiencia_laboral_Buena">Buena</label>
+                            </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="pregunta11"
                 name="pregunta11"
                 value="Regular"
                 onChange={handleChange}
-              />
-              <label for="eficiencia_laboral_Regular">Regular</label>
-            </div>
+               />
+                              <label for="eficiencia_laboral_Regular">Regular</label>
+                            </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="pregunta11"
                 name="pregunta11"
                 value="Mala"
                 onChange={handleChange}
-              />
-              <label for="eficiencia_laboral_Mala">Mala</label>
+               />
+                              <label for="eficiencia_laboral_Mala">Mala</label>
               <br></br>
-            </div>
-          </div>
+                            </div>
+                          </div>
 
           <label for="formación_academica">
             Cómo califica su formación académica con respecto a su desempeño
@@ -450,27 +538,27 @@ const Encuesta = () => {
               <label for="pregunta12">Muy Buena</label>
             </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="pregunta12"
                 name="pregunta12"
                 value="Buena"
                 onChange={handleChange}
-              />
-              <label for="formación_academica_Buena">Buena</label>
-            </div>
+               />
+                              <label for="formación_academica_Buena">Buena</label>
+                            </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="pregunta12"
                 name="pregunta12"
                 value="Regular"
                 onChange={handleChange}
-              />
-              <label for="formación_academica_Regular">Regular</label>
-            </div>
+               />
+                              <label for="formación_academica_Regular">Regular</label>
+                            </div>
 
             <div class="col-3">
               <input
@@ -501,27 +589,27 @@ const Encuesta = () => {
               <label for="utilidad_residencias_MuyBuena">Muy Buena</label>
             </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="pregunta13"
                 name="pregunta13"
                 value="Buena"
                 onChange={handleChange}
-              />
-              <label for="utilidad_residencias_Buena">Buena</label>
-            </div>
+               />
+                              <label for="utilidad_residencias_Buena">Buena</label>
+                            </div>
 
-            <div class="col-3">
-              <input
+                            <div class="col-3">
+                              <input
                 type="radio"
                 id="pregunta13"
                 name="pregunta13"
                 value="Regular"
                 onChange={handleChange}
-              />
-              <label for="utilidad_residencias_Regular">Regular</label>
-            </div>
+               />
+                              <label for="utilidad_residencias_Regular">Regular</label>
+                            </div>
 
             <div class="col-3">
               <input
@@ -538,64 +626,64 @@ const Encuesta = () => {
 
           <h3>Expectativas de Desarrollo</h3>
 
-          <label for="cursos_actualizacion">Cursos de Actualización:</label>
-          <div class="row">
-            <div class="col-6">
-              <input
+                          <label for="cursos_actualizacion">Cursos de Actualización:</label>
+                          <div class="row">
+                            <div class="col-6">
+                              <input
                 type="radio"
                 id="pregunta14"
                 name="pregunta14"
                 value="Si"
                 onChange={handleChange}
-              />
-              <label for="cursos_si">Sí</label>
-            </div>
+               />
+                              <label for="cursos_si">Sí</label>
+                            </div>
 
-            <div class="col-6">
-              <input
+                            <div class="col-6">
+                              <input
                 type="radio"
                 id="pregunta14"
                 name="pregunta14"
                 value="No"
                 onChange={handleChange}
-              />
-              <label for="cursos_no">No</label>
+               />
+                              <label for="cursos_no">No</label>
               <br></br>
-            </div>
-          </div>
+                            </div>
+                          </div>
 
-          <label for="posgrado">Posgrado:</label>
-          <div class="row">
-            <div class="col-6">
-              <input
+                          <label for="posgrado">Posgrado:</label>
+                          <div class="row">
+                            <div class="col-6">
+                              <input
                 type="radio"
                 id="pregunta15"
                 name="pregunta15"
                 value="Si"
                 onChange={handleChange}
-              />
-              <label for="posgrado_si">Sí</label>
-            </div>
+               />
+                              <label for="posgrado_si">Sí</label>
+                            </div>
 
-            <div class="col-6">
-              <input
+                            <div class="col-6">
+                              <input
                 type="radio"
                 id="pregunta15"
                 name="pregunta15"
                 value="No"
                 onChange={handleChange}
-              />
-              <label for="posgrado_no">No</label>
+               />
+                              <label for="posgrado_no">No</label>
               <br></br>
-            </div>
-          </div>
+                            </div>
+                          </div>
 
-          <div class="text-center">
-            <input type="submit" value="Enviar Encuesta" />
-          </div>
-        </form>
-      </div>
-    </Fragment>
-  );
+                          <div class="text-center">
+                            <input type="submit" value="Enviar Encuesta"  />
+                          </div>
+                        </form>
+            </div>
+        </Fragment>
+    );
 };
 export default Encuesta;

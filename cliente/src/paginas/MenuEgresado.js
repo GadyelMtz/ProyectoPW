@@ -69,8 +69,8 @@ const MenuEgresado = () => {
                     </Link>
                   </li>
                   <li class="nav-item p-3 py-md-1">
-                    <Link to="" class="nav-link">
-                      Enlace vacio
+                    <Link to="/" class="nav-link">
+                      Cerrar sesión
                     </Link>
                   </li>
                 </ul>

@@ -1,0 +1,9 @@
+.text-azul{
+    color: rgba(var(--bs-primary-rgb));
+}
+
+h1 {
+    margin-top: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}

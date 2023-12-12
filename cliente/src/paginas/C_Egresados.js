@@ -50,7 +50,7 @@ const RegistroEgresado = () => {
       };
 
       const respuesta = await fetch(
-        "/login/menu-administrador/registrar-egresados",
+        "http://localhost:5000/login/menu-administrador/registrar-egresados",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

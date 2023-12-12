@@ -43,19 +43,19 @@ const MenuEgresado = () => {
                     </a>
                   </li>
                   <li class="nav-item p-3 py-md-1">
-                    <Link to="/consultar-egresados" class="nav-link">
-                      Ver egresados
-                    </Link>
-                  </li>
-                  <li class="nav-item p-3 py-md-1">
-                    <Link to="/20400775/encuesta" class="nav-link">
+                    <Link to="/login/menu/encuesta/:noControl" class="nav-link">
                       Encuesta
                     </Link>
                   </li>
                   <li class="nav-item p-3 py-md-1">
-                    <a href="" class="nav-link">
-                      Bolsa de trabajo
-                    </a>
+                    <Link to="" class="nav-link">
+                      Enlace vacio
+                    </Link>
+                  </li>
+                  <li class="nav-item p-3 py-md-1">
+                    <Link to="" class="nav-link">
+                      Enlace vacio
+                    </Link>
                   </li>
                 </ul>
 

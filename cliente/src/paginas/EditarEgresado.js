@@ -28,7 +28,7 @@ const EditarEgresado = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/consultar-egresados/${noControl}`
+          `http://localhost:5000/login/menu-administrador/consultar-egresados/${noControl}`
         );
         const jsonData = await response.json();
 
@@ -78,7 +78,7 @@ const EditarEgresado = () => {
         fechaegreso: fechaEgresoFormateada,
       });
 
-      await fetch(`http://localhost:5000/editar-egresado/${noControl}`, {
+      await fetch(`http://localhost:5000/login/menu-administrador/editar-egresado/${noControl}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

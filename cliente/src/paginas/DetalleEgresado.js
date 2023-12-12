@@ -13,7 +13,7 @@ const DetalleEgresado = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `/login/menu-administrador/consultar-egresados/${noControl}`
+          `http://localhost:5000/login/menu-administrador/consultar-egresados/${noControl}`
         );
         const jsonData = await response.json();
         setEgresado(jsonData);

@@ -10,7 +10,7 @@ app.use(express.json());
 
 
 
-app.post('/registrar-egresados', async (req, res) => {
+app.post('/login/menu-administrador/registrar-egresados', async (req, res) => {
   try {
     const {
       nocontrol,
@@ -62,7 +62,7 @@ app.post('/registrar-egresados', async (req, res) => {
   }
 });
 
-app.get("/consultar-egresados", async (req, res) => {
+app.get("/login/menu-administrador/consultar-egresados", async (req, res) => {
   try {
     const getegresado = await pool.query("select * from egresado");
     res.json(getegresado.rows);
@@ -71,7 +71,7 @@ app.get("/consultar-egresados", async (req, res) => {
   }
 });
 
-app.get("/consultar-egresados/:nocontrol", async (req, res) => {
+app.get("/login/menu-administrador/consultar-egresados/:nocontrol", async (req, res) => {
   try {
     const { nocontrol } = req.params; //URI
     console.log("Número de control recibido:", nocontrol);
@@ -93,7 +93,7 @@ app.get("/consultar-egresados/:nocontrol", async (req, res) => {
   }
 });
 
-app.put("/editar-egresado/:nocontrol", async (req, res) => {
+app.put("/login/menu-administrador/editar-egresado/:nocontrol", async (req, res) => {
   try {
     const { nocontrol } = req.params;
     const {
@@ -142,7 +142,7 @@ app.put("/editar-egresado/:nocontrol", async (req, res) => {
   }
 });
 
-app.delete("/eliminar-egresado/:id", async(req, res)=>{
+app.delete("/login/menu-administrador/eliminar-egresado/:id", async(req, res)=>{
   try{
       const {id} = req.params;
       const deleteEgresado = await pool.query("delete from egresado where nocontrol =$1", [id]);

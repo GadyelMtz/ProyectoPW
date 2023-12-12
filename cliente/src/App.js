@@ -22,7 +22,7 @@ const App = () => {
       <Route path="/eliminar-egresado/:noControl" element={<RUD_Egresados />} />
       <Route path="/login" element={<Login />} />
       <Route path="/menu" element={<Menu/>}/>
-      <Route path="/:noControl/encuesta" element={<Encuesta />}/>
+      <Route path="/menu/:noControl/encuesta" element={<Encuesta />}/>
     </Routes>
   </Router>
   );
